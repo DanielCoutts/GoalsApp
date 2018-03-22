@@ -31,8 +31,7 @@ class LinearProgressBar @JvmOverloads constructor(
             invalidate()
         }
 
-    private val backgroundLinePaint = Paint()
-    private val foregroundLinePaint = Paint()
+    private val linePaint = Paint()
 
     var animationDurationMillis = 300L
 
@@ -62,13 +61,9 @@ class LinearProgressBar @JvmOverloads constructor(
             typedArray.recycle()
         }
 
-        backgroundLinePaint.style = Paint.Style.STROKE
-        backgroundLinePaint.strokeCap = Paint.Cap.ROUND
-        backgroundLinePaint.isAntiAlias = true
-
-        foregroundLinePaint.style = Paint.Style.STROKE
-        foregroundLinePaint.strokeCap = Paint.Cap.ROUND
-        foregroundLinePaint.isAntiAlias = true
+        linePaint.style = Paint.Style.STROKE
+        linePaint.strokeCap = Paint.Cap.ROUND
+        linePaint.isAntiAlias = true
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -96,22 +91,21 @@ class LinearProgressBar @JvmOverloads constructor(
     }
 
     override fun onDraw(canvas: Canvas?) {
+        linePaint.strokeWidth = lineThickness
+
         val y = height.toFloat() / 2
         val offset = lineThickness / 2
         val start = offset
         val maxLength = width.toFloat() - (offset * 2)
 
-        backgroundLinePaint.color = backgroundLineColor
-        backgroundLinePaint.strokeWidth = lineThickness
+        linePaint.color = backgroundLineColor
+        canvas?.drawLine(start, y, start + maxLength, y, linePaint)
 
-        foregroundLinePaint.color = foregroundLineColor
-        foregroundLinePaint.strokeWidth = lineThickness
-
-        canvas?.drawLine(start, y, start + maxLength, y, backgroundLinePaint)
-        canvas?.drawLine(start, y, start + (maxLength * percentage), y, foregroundLinePaint)
+        linePaint.color = foregroundLineColor
+        canvas?.drawLine(start, y, start + (maxLength * percentage), y, linePaint)
     }
 
-    fun animateProgress(startPercentage: Float, endPercentage: Float) {
+    private fun animateProgress(startPercentage: Float, endPercentage: Float) {
 
         if (animator?.isRunning == true) return
 

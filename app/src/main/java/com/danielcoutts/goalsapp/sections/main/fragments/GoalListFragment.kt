@@ -50,6 +50,14 @@ class GoalListFragment : BaseFragment<MainViewModel>() {
             view.progressBar.percentage += 0.1f
         }
 
+        view.empty.setOnClickListener {
+            view.segments.numberOfActiveSegments = 0
+        }
+
+        view.fill.setOnClickListener {
+            view.segments.numberOfActiveSegments = 5
+        }
+
         return view
     }
 

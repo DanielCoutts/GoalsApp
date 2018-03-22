@@ -5,4 +5,12 @@
         <attr name="foregroundLineColor" format="color" />
         <attr name="lineThickness" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="SegmentedProgressBar">
+        <attr name="backgroundLineColor" />
+        <attr name="foregroundLineColor" />
+        <attr name="lineThickness" />
+        <attr name="numberOfSegments" format="integer" />
+        <attr name="spaceBetweenSegments" format="dimension" />
+    </declare-styleable>
 </resources>
