@@ -42,6 +42,14 @@ class GoalListFragment : BaseFragment<MainViewModel>() {
             }
         }
 
+        view.minus.setOnClickListener {
+            view.progressBar.percentage -= 0.1f
+        }
+
+        view.plus.setOnClickListener {
+            view.progressBar.percentage += 0.1f
+        }
+
         return view
     }
 
