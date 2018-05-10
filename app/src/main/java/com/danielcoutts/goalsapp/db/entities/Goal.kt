@@ -25,5 +25,5 @@ class Goal(var title: String, val recurrence: Recurrence, val type: GoalType) {
 }
 
 data class TimeGoalData(var timeTarget: Duration)
-data class NumberGoalData(var numberTarget: Int?)
+data class NumberGoalData(var numberTarget: Int)
 

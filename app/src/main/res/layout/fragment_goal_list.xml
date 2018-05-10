@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.danielcoutts.goalsapp.sections.main.fragments.GoalListFragment">
+    android:background="@color/colorGreyBackground"
+    tools:context="com.danielcoutts.goalsapp.sections.main.fragments.BaseGoalListFragment">
 
     <EditText
         android:id="@+id/editText"
