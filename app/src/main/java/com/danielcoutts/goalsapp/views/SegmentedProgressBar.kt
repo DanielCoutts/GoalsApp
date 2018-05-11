@@ -31,10 +31,10 @@ class SegmentedProgressBar @JvmOverloads constructor(
             invalidate()
         }
 
-    var numberOfSegments = 2
+    var numberOfSegments = 1
         set(value) {
             field = when {
-                (value < 2) -> 2
+                (value < 1) -> 1
                 else -> value
             }
 
@@ -138,7 +138,7 @@ class SegmentedProgressBar @JvmOverloads constructor(
 
             linePaint.color = if (i < numberOfActiveSegments) foregroundLineColor else backgroundLineColor
             roundedLinePaint.color = linePaint.color
-            canvas?.drawLine(segmentStartPosition, y, segmentEndPosition, y, linePaint)
+            canvas?.drawLine(segmentStartPosition, y, segmentEndPosition, y, if(numberOfSegments > 1) linePaint else roundedLinePaint)
             when {
                 (i == 0) -> canvas?.drawLine(segmentStartPosition, y, segmentStartPosition+0.001f, y, roundedLinePaint)
                 (i == numberOfSegments - 1) -> canvas?.drawLine(segmentEndPosition-0.001f, y, segmentEndPosition, y, roundedLinePaint)

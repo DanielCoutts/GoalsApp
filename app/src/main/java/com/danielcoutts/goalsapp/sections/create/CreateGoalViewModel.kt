@@ -4,20 +4,30 @@ import com.danielcoutts.goalsapp.base.BaseViewModel
 import com.danielcoutts.goalsapp.db.entities.Goal
 import com.danielcoutts.goalsapp.etc.Recurrence
 import io.reactivex.Completable
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 
 class CreateGoalViewModel : BaseViewModel() {
 
     val model = CreateGoalModel()
 
+    var verb = ""
+    var number = 0
+    var noun = ""
+    var recurrence: Recurrence? = null
+
     override fun onCleared() {
         super.onCleared()
     }
 
-//    fun viewState(): Observable<ViewState> {
-//        return Observable.just(ViewState(Goal("", Recurrence.DAILY, GoalType.TIME)))
-//    }
+    fun createGoal(): Single<Boolean> {
+        return if (isValid()) {
+            model.createGoal(Goal("$verb $number $noun", recurrence!!, number)).toSingleDefault(true)
+        } else {
+            Single.just(false)
+        }
+    }
 
-    fun createGoal(): Completable = model.createGoal(Goal("Do 5 things", Recurrence.DAILY, 5))
+    private fun isValid(): Boolean = !verb.isEmpty() && number > 0 && !noun.isEmpty() && recurrence != null
 
 }
