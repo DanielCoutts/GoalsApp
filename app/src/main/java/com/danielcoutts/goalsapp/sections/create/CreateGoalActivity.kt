@@ -6,6 +6,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.danielcoutts.goalsapp.R
 import com.danielcoutts.goalsapp.base.BaseActivity
+import com.danielcoutts.goalsapp.etc.Recurrence
 import com.pawegio.kandroid.textWatcher
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.addTo
@@ -34,13 +35,12 @@ class CreateGoalActivity : BaseActivity<CreateGoalViewModel>() {
         }
 
         okButton.setOnClickListener {
-            // TODO saveEvent
             viewModel.createGoal()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeBy(
-                            onComplete = {
-                                finish()
+                            onSuccess = { success ->
+                                if(success) finish()
                             },
                             onError = {
 
@@ -51,27 +51,31 @@ class CreateGoalActivity : BaseActivity<CreateGoalViewModel>() {
 
         verb.textWatcher {
             onTextChanged { text, _, _, _ ->
-
+                viewModel.verb = text.toString()
             }
         }
 
         number.textWatcher {
             onTextChanged { text, _, _, _ ->
-
+                try {
+                    val number = text.toString().toInt()
+                    viewModel.number = number
+                } catch (ignore: NumberFormatException){}
             }
         }
 
         noun.textWatcher {
             onTextChanged { text, _, _, _ ->
-
+                viewModel.noun = text.toString()
             }
         }
 
         every.setOnCheckedChangeListener { _, id ->
-            when(id) {
-                R.id.day -> {}
-                R.id.week -> {}
-                R.id.month -> {}
+            viewModel.recurrence = when(id) {
+                R.id.day ->  Recurrence.DAILY
+                R.id.week -> Recurrence.WEEKLY
+                R.id.month -> Recurrence.MONTHLY
+                else -> null
             }
         }
     }
