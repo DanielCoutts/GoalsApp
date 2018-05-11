@@ -1,8 +1,9 @@
 package com.danielcoutts.goalsapp.views
 
 import android.content.Context
-import android.support.constraint.ConstraintLayout
 import android.util.AttributeSet
+import android.widget.FrameLayout
+import androidx.core.view.updateLayoutParams
 import com.danielcoutts.goalsapp.R
 import com.danielcoutts.goalsapp.db.entities.Goal
 import com.danielcoutts.goalsapp.db.entities.GoalLog
@@ -10,7 +11,7 @@ import kotlinx.android.synthetic.main.item_goal.view.*
 
 class GoalView @kotlin.jvm.JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : ConstraintLayout(context, attrs, defStyleAttr) {
+) : FrameLayout(context, attrs, defStyleAttr) {
 
     var goal: Goal? = null
         set(value) {
@@ -37,5 +38,12 @@ class GoalView @kotlin.jvm.JvmOverloads constructor(
 
     init {
         inflate(getContext(), R.layout.item_goal, this)
+    }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        updateLayoutParams {
+            width = FrameLayout.LayoutParams.MATCH_PARENT
+        }
     }
 }

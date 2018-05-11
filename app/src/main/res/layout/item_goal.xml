@@ -1,87 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
-    android:background="@color/colorWhite"
-    android:elevation="4dp"
-    android:paddingBottom="16dp"
-    android:paddingEnd="24dp"
-    android:paddingStart="24dp"
-    android:paddingTop="16dp">
+    android:paddingBottom="8dp">
 
-    <TextView
-        android:id="@+id/lightText"
-        style="@style/GoalLight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:text="Today I want to"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/title"
-        style="@style/GoalTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:paddingBottom="14dp"
-        android:text="Play guitar for 1 hour"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/logButton"
-        app:layout_constraintTop_toBottomOf="@id/lightText" />
-
-    <TextView
-        android:id="@+id/loggedText"
-        style="@style/GoalCondensed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="2dp"
-        android:paddingEnd="2dp"
-        android:paddingTop="2dp"
-        android:paddingBottom="4dp"
-        android:text="logged"
-        app:layout_constraintTop_toBottomOf="@id/title" />
-
-    <TextView
-        android:id="@+id/remainingText"
-        style="@style/GoalCondensed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingStart="2dp"
-        android:paddingEnd="2dp"
-        android:paddingTop="2dp"
-        android:paddingBottom="4dp"
-        android:text="remaining"
-        app:layout_constraintBaseline_toBaselineOf="@id/loggedText"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <com.danielcoutts.goalsapp.views.SegmentedProgressBar
-        android:id="@+id/progressBar"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
-        android:paddingTop="3dp"
-        app:backgroundLineColor="@color/colorPrimaryLight"
-        app:foregroundLineColor="@color/colorAccent"
-        app:layout_constraintTop_toBottomOf="@id/loggedText"
-        app:lineThickness="10dp" />
+        android:background="@color/colorWhite"
+        android:elevation="4dp"
+        android:paddingEnd="24dp"
+        android:paddingStart="24dp"
+        android:paddingBottom="24dp"
+        android:paddingTop="24dp">
 
-    <ImageView
-        style="button"
-        android:id="@+id/deleteButton"
-        android:src="@drawable/ic_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:id="@+id/lightText"
+            style="@style/GoalLight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Today I want to"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        style="button"
-        android:id="@+id/logButton"
-        android:src="@drawable/ic_log_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@id/deleteButton"/>
+        <TextView
+            android:id="@+id/title"
+            style="@style/GoalTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="14dp"
+            android:text="Play guitar for 1 hour"
+            app:layout_constraintEnd_toStartOf="@+id/logButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lightText" />
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/loggedText"
+            style="@style/GoalCondensed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="4dp"
+            android:paddingEnd="2dp"
+            android:paddingStart="2dp"
+            android:paddingTop="2dp"
+            android:text="logged"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <TextView
+            android:id="@+id/remainingText"
+            style="@style/GoalCondensed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="4dp"
+            android:paddingEnd="2dp"
+            android:paddingStart="2dp"
+            android:paddingTop="2dp"
+            android:text="remaining"
+            app:layout_constraintBaseline_toBaselineOf="@id/loggedText"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.danielcoutts.goalsapp.views.SegmentedProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingTop="3dp"
+            app:backgroundLineColor="@color/colorPrimaryLight"
+            app:foregroundLineColor="@color/colorAccent"
+            app:layout_constraintTop_toBottomOf="@id/loggedText"
+            app:lineThickness="10dp"
+            app:spaceBetweenSegments="2dp" />
+
+        <ImageButton
+            android:id="@+id/deleteButton"
+            style="button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="4dp"
+            android:src="@drawable/ic_delete"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageButton
+            android:id="@+id/logButton"
+            style="button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="4dp"
+            android:src="@drawable/ic_log_number"
+            app:layout_constraintEnd_toStartOf="@id/deleteButton" />
+    </android.support.constraint.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/cardShadowColor" />
+
+</LinearLayout>
