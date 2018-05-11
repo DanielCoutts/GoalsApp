@@ -10,12 +10,11 @@ import android.view.ViewGroup
 
 import com.danielcoutts.goalsapp.base.BaseFragment
 import com.danielcoutts.goalsapp.etc.Recurrence
-import com.danielcoutts.goalsapp.sections.main.CreateGoalViewModel
+import com.danielcoutts.goalsapp.sections.main.MainViewModel
 import com.danielcoutts.goalsapp.sections.main.adapters.GoalListAdapter
-import kotlin.reflect.KClass
 
-abstract class BaseGoalListFragment(private val recurrence: Recurrence) : BaseFragment<CreateGoalViewModel>() {
-    override val viewModelClass: KClass<CreateGoalViewModel> = CreateGoalViewModel::class
+abstract class BaseGoalListFragment(private val recurrence: Recurrence) : BaseFragment<MainViewModel>() {
+    override val viewModelClass = MainViewModel::class
 
     protected val adapter = GoalListAdapter(recurrence)
 

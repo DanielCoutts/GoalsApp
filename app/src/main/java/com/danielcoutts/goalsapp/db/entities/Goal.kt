@@ -9,21 +9,12 @@ import com.danielcoutts.goalsapp.etc.Recurrence
 import org.joda.time.LocalDate
 
 @Entity(tableName = "goals")
-class Goal(var title: String, val recurrence: Recurrence, val type: GoalType) {
+class Goal(var title: String, val recurrence: Recurrence, var target: Int) {
 
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0
 
     var dateCreated: LocalDate = LocalDate.now()
 
-    @Embedded
-    var timeGoalData: TimeGoalData? = null
-
-    @Embedded
-    var numberGoalData: NumberGoalData? = null
-
 }
-
-data class TimeGoalData(var timeTarget: Duration)
-data class NumberGoalData(var numberTarget: Int)
 

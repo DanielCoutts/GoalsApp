@@ -14,19 +14,22 @@
     <TextView
         android:id="@+id/lightText"
         style="@style/GoalLight"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:text="Today I want to"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/title"
         style="@style/GoalTitle"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingBottom="14dp"
         android:text="Play guitar for 1 hour"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/logButton"
         app:layout_constraintTop_toBottomOf="@id/lightText" />
 
     <TextView
@@ -38,7 +41,7 @@
         android:paddingEnd="2dp"
         android:paddingTop="2dp"
         android:paddingBottom="4dp"
-        android:text="25 mins logged"
+        android:text="logged"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
     <TextView
@@ -50,23 +53,12 @@
         android:paddingEnd="2dp"
         android:paddingTop="2dp"
         android:paddingBottom="4dp"
-        android:text="35 mins remaining"
+        android:text="remaining"
         app:layout_constraintBaseline_toBaselineOf="@id/loggedText"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <com.danielcoutts.goalsapp.views.LinearProgressBar
-        android:id="@+id/linearProgressBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
-        android:paddingTop="3dp"
-        app:backgroundLineColor="@color/colorPrimaryLight"
-        app:foregroundLineColor="@color/colorAccent"
-        app:layout_constraintTop_toBottomOf="@id/loggedText"
-        app:lineThickness="10dp" />
-
     <com.danielcoutts.goalsapp.views.SegmentedProgressBar
-        android:id="@+id/segmentedProgressBar"
+        android:id="@+id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="5dp"
@@ -78,8 +70,8 @@
 
     <ImageView
         style="button"
-        android:id="@+id/menuButton"
-        android:src="@drawable/ic_log_menu"
+        android:id="@+id/deleteButton"
+        android:src="@drawable/ic_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -90,6 +82,6 @@
         android:src="@drawable/ic_log_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@id/menuButton"/>
+        app:layout_constraintEnd_toStartOf="@id/deleteButton"/>
 
 </android.support.constraint.ConstraintLayout>

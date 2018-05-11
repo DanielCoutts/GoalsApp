@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">GoalsApp</string>
+
+        <string-array name="recurrence_options">
+            <item>Day</item>
+            <item>Week</item>
+            <item>Month</item>
+        </string-array>
 </resources>

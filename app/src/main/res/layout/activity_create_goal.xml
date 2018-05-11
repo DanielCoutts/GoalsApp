@@ -5,64 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorGreyBackground"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context="com.danielcoutts.goalsapp.sections.create.CreateGoalActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
+        app:title="Create Goal"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_marginBottom="8dp"
         android:background="@color/colorPrimary" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:background="@color/colorWhite"
-        android:elevation="1dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="10dp">
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:src="@drawable/ic_time_goal" />
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:src="@drawable/ic_number_goal" />
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:src="@drawable/ic_checkbox_goal" />
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -80,22 +33,81 @@
             android:layout_height="wrap_content"
             android:text="I want to" />
 
-        <EditText
-            android:id="@+id/title"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:orientation="horizontal">
 
-        <TextView
-            style="@style/GoalLight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="for" />
+            <EditText
+                android:hint="Do"
+                android:id="@+id/verb"
+                android:inputType="textShortMessage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4" />
+
+            <EditText
+                android:id="@+id/number"
+                android:inputType="number"
+                android:hint="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1" />
+
+            <EditText
+                android:id="@+id/noun"
+                android:inputType="textShortMessage"
+                android:hint="thing"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="6" />
+
+        </LinearLayout>
+
 
         <TextView
             style="@style/GoalLight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="every" />
+
+        <Spinner
+            android:id="@+id/recurrence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </Spinner>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/cancelButton"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/ic_cancel"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/okButton"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/ic_ok"
+            android:layout_marginEnd="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp" />
 
     </LinearLayout>
 

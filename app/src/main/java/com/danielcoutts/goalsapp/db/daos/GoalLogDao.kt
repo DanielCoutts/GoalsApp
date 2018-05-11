@@ -1,38 +1,27 @@
 package com.danielcoutts.goalsapp.db.daos
 
-import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
 import android.arch.persistence.room.OnConflictStrategy.REPLACE
 import com.danielcoutts.goalsapp.db.entities.*
-import java.time.LocalDate
+import com.danielcoutts.goalsapp.etc.Recurrence
+import io.reactivex.Flowable
+import org.joda.time.LocalDate
 
 @Dao
 interface GoalLogDao {
 
-    @Query("select * from number_goal_logs where goalId = :goalId and date = :date")
-    fun numberLog(goalId: Long, date: LocalDate): LiveData<NumberGoalLog>
+    @Query("select * from goal_logs where date = :date")
+    fun logs(date: LocalDate): Flowable<List<GoalLog>>
 
-    @Query("select * from time_goal_logs where goalId = :goalId and date = :date")
-    fun timeLog(goalId: Long, date: LocalDate): LiveData<TimeGoalLog>
+    @Query("select * from goal_logs where recurrence = :recurrence and date = :date")
+    fun logs(date: LocalDate, recurrence: Recurrence): Flowable<List<GoalLog>>
 
-    @Query("select * from checkbox_goal_logs where goalId = :goalId and date = :date")
-    fun checkboxLog(goalId: Long, date: LocalDate): LiveData<CheckboxGoalLog>
-
-    @Insert(onConflict = REPLACE)
-    fun insertLog(log: NumberGoalLog)
-
-    @Update(onConflict = REPLACE)
-    fun updateLog(log: NumberGoalLog)
+    @Query("select * from goal_logs where goalId = :goalId and date = :date")
+    fun log(goalId: Long, date: LocalDate): Flowable<GoalLog>
 
     @Insert(onConflict = REPLACE)
-    fun insertLog(log: TimeGoalLog)
+    fun insertLog(log: GoalLog)
 
     @Update(onConflict = REPLACE)
-    fun updateLog(log: TimeGoalLog)
-
-    @Insert(onConflict = REPLACE)
-    fun insertLog(log: CheckboxGoalLog)
-
-    @Update(onConflict = REPLACE)
-    fun updateLog(log: CheckboxGoalLog)
+    fun updateLog(log: GoalLog)
 }
