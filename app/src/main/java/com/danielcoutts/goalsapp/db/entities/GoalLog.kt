@@ -16,7 +16,7 @@ import org.joda.time.LocalDate
                     childColumns = ["goalId"],
                     onDelete = ForeignKey.CASCADE)
         ])
-open class GoalLog(val goalId: Long, val recurrence: Recurrence, val date: LocalDate, val numberLogged: Int) {
+open class GoalLog(val goalId: Long, val recurrence: Recurrence, val date: LocalDate, var numberLogged: Int) {
 
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0

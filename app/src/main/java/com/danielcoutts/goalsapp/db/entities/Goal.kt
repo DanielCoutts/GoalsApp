@@ -1,10 +1,7 @@
 package com.danielcoutts.goalsapp.db.entities
 
-import android.arch.persistence.room.Embedded
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
-import com.danielcoutts.goalsapp.etc.Duration
-import com.danielcoutts.goalsapp.etc.GoalType
 import com.danielcoutts.goalsapp.etc.Recurrence
 import org.joda.time.LocalDate
 
