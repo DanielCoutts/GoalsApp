@@ -1,6 +1,8 @@
 package com.danielcoutts.goalsapp.views
 
 import android.content.Context
+import android.graphics.Color
+import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.core.view.updateLayoutParams
@@ -34,6 +36,10 @@ class GoalView @kotlin.jvm.JvmOverloads constructor(
             progressBar.numberOfActiveSegments = value.numberLogged
             loggedText.text = "${value.numberLogged} logged"
             remainingText.text = "${currentGoal.target - value.numberLogged} remaining"
+
+            val logButtonActive = (currentGoal.target > value.numberLogged)
+            logButton.isEnabled = logButtonActive
+            logButton.setColorFilter(ContextCompat.getColor(context, if(logButtonActive) R.color.colorGreyDark else R.color.colorGreyLight))
         }
 
     init {

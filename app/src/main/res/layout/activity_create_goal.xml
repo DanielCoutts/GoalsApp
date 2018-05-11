@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorGreyBackground"
@@ -31,6 +32,7 @@
             style="@style/GoalLight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="textCapSentences"
             android:text="I want to" />
 
         <LinearLayout
@@ -46,6 +48,7 @@
                 android:layout_weight="4"
                 android:backgroundTint="@color/edit_text_background_tint"
                 android:hint="Do"
+                android:imeOptions="actionNext"
                 android:lines="1"
                 android:maxLength="25"
                 android:singleLine="true"
@@ -62,6 +65,7 @@
                 android:layout_weight="1"
                 android:backgroundTint="@color/edit_text_background_tint"
                 android:hint="1"
+                android:imeOptions="actionNext"
                 android:inputType="number"
                 android:maxLength="2"
                 android:singleLine="true"
@@ -77,6 +81,7 @@
                 android:layout_weight="6"
                 android:backgroundTint="@color/edit_text_background_tint"
                 android:hint="thing"
+                android:imeOptions="actionDone"
                 android:lines="1"
                 android:maxLength="25"
                 android:singleLine="true"
