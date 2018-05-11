@@ -8,9 +8,11 @@ import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 
-class DailyGoalListFragment : BaseGoalListFragment(Recurrence.DAILY) {
+class DailyGoalListFragment : BaseGoalListFragment() {
 
     override fun subscribeToStreams(view: View) {
+        super.subscribeToStreams(view)
+
         viewModel.dayViewState()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

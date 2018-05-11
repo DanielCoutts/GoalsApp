@@ -7,6 +7,10 @@ import android.widget.ArrayAdapter
 import com.danielcoutts.goalsapp.R
 import com.danielcoutts.goalsapp.base.BaseActivity
 import com.pawegio.kandroid.textWatcher
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxkotlin.addTo
+import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_create_goal.*
 
 class CreateGoalActivity : BaseActivity<CreateGoalViewModel>() {
@@ -20,11 +24,6 @@ class CreateGoalActivity : BaseActivity<CreateGoalViewModel>() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_goal)
 
-        val spinnerAdapter = ArrayAdapter.createFromResource(this,
-                R.array.recurrence_options, android.R.layout.simple_spinner_item)
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        recurrence.adapter = spinnerAdapter;
-
         toolbar.setNavigationIcon(R.drawable.ic_cancel)
         toolbar.setNavigationOnClickListener {
             finish()
@@ -36,7 +35,18 @@ class CreateGoalActivity : BaseActivity<CreateGoalViewModel>() {
 
         okButton.setOnClickListener {
             // TODO saveEvent
-            finish()
+            viewModel.createGoal()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeBy(
+                            onComplete = {
+                                finish()
+                            },
+                            onError = {
+
+                            }
+                    )
+                    .addTo(compositeDisposable)
         }
 
         verb.textWatcher {
@@ -57,13 +67,12 @@ class CreateGoalActivity : BaseActivity<CreateGoalViewModel>() {
             }
         }
 
-        recurrence.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) = Unit
-
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-
+        every.setOnCheckedChangeListener { _, id ->
+            when(id) {
+                R.id.day -> {}
+                R.id.week -> {}
+                R.id.month -> {}
             }
-
         }
     }
 }

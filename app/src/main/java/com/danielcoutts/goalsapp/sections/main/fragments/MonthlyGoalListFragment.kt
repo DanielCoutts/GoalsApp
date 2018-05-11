@@ -8,9 +8,11 @@ import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 
-class MonthlyGoalListFragment : BaseGoalListFragment(Recurrence.MONTHLY) {
+class MonthlyGoalListFragment : BaseGoalListFragment() {
 
     override fun subscribeToStreams(view: View) {
+        super.subscribeToStreams(view)
+
         viewModel.monthViewState()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

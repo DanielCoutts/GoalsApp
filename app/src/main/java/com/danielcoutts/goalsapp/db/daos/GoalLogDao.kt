@@ -8,20 +8,25 @@ import io.reactivex.Flowable
 import org.joda.time.LocalDate
 
 @Dao
-interface GoalLogDao {
+abstract class GoalLogDao {
 
     @Query("select * from goal_logs where date = :date")
-    fun logs(date: LocalDate): Flowable<List<GoalLog>>
+    abstract fun logs(date: LocalDate): Flowable<List<GoalLog>>
 
     @Query("select * from goal_logs where recurrence = :recurrence and date = :date")
-    fun logs(date: LocalDate, recurrence: Recurrence): Flowable<List<GoalLog>>
+    abstract fun logs(date: LocalDate, recurrence: Recurrence): Flowable<List<GoalLog>>
 
     @Query("select * from goal_logs where goalId = :goalId and date = :date")
-    fun log(goalId: Long, date: LocalDate): Flowable<GoalLog>
+    abstract fun log(goalId: Long, date: LocalDate): Flowable<GoalLog>
 
     @Insert(onConflict = REPLACE)
-    fun insertLog(log: GoalLog)
+    abstract fun insertLog(log: GoalLog)
 
     @Update(onConflict = REPLACE)
-    fun updateLog(log: GoalLog)
+    abstract fun updateLog(log: GoalLog)
+
+    @Transaction
+    open fun logForGoal(goal: Goal) {
+
+    }
 }

@@ -8,15 +8,16 @@ import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import io.reactivex.schedulers.Schedulers
 
-class WeeklyGoalListFragment : BaseGoalListFragment(Recurrence.WEEKLY) {
+class WeeklyGoalListFragment : BaseGoalListFragment() {
 
     override fun subscribeToStreams(view: View) {
+        super.subscribeToStreams(view)
+
         viewModel.weekViewState()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy {
                     adapter.setGoalListData(GoalListData(it.goals, it.logs))
-
                 }
                 .addTo(compositeDisposable)
     }
