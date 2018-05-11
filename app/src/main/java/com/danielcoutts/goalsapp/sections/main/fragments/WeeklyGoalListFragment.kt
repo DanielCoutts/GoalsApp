@@ -14,7 +14,7 @@ class WeeklyGoalListFragment : BaseGoalListFragment(Recurrence.WEEKLY) {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy {
-
+                    adapter.goals = it.weeklyGoals
                 }
                 .addTo(compositeDisposable)
     }
