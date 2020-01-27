@@ -1,8 +1,7 @@
 package com.danielcoutts.goalsapp.views
 
 import android.content.Context
-import android.graphics.Color
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.core.view.updateLayoutParams
@@ -11,7 +10,7 @@ import com.danielcoutts.goalsapp.db.entities.Goal
 import com.danielcoutts.goalsapp.db.entities.GoalLog
 import kotlinx.android.synthetic.main.item_goal.view.*
 
-class GoalView @kotlin.jvm.JvmOverloads constructor(
+class GoalView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
@@ -49,7 +48,7 @@ class GoalView @kotlin.jvm.JvmOverloads constructor(
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         updateLayoutParams {
-            width = FrameLayout.LayoutParams.MATCH_PARENT
+            width = LayoutParams.MATCH_PARENT
         }
     }
 }

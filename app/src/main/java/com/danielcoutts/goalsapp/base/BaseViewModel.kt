@@ -1,5 +1,5 @@
 package com.danielcoutts.goalsapp.base
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 
 abstract class BaseViewModel: ViewModel()

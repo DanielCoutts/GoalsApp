@@ -1,7 +1,7 @@
 package com.danielcoutts.goalsapp.sections.create
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
+import com.google.android.material.snackbar.Snackbar
 import com.danielcoutts.goalsapp.R
 import com.danielcoutts.goalsapp.base.BaseActivity
 import com.danielcoutts.goalsapp.etc.Recurrence
@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_create_goal.*
 class CreateGoalActivity : BaseActivity<CreateGoalViewModel>() {
     override val viewModelClass = CreateGoalViewModel::class
 
-    private val errorSnackbar = Snackbar.make(container, "The goal details are incomplete", Snackbar.LENGTH_SHORT)
+    private lateinit var errorSnackbar: Snackbar
 
     override fun subscribeToStreams() {
 
@@ -25,6 +25,8 @@ class CreateGoalActivity : BaseActivity<CreateGoalViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_goal)
+
+        Snackbar.make(container, "The goal details are incomplete", Snackbar.LENGTH_SHORT)
 
         verb.requestFocus()
 

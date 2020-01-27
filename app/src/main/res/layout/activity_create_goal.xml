@@ -10,7 +10,7 @@
     android:orientation="vertical"
     tools:context="com.danielcoutts.goalsapp.sections.create.CreateGoalActivity">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -140,7 +140,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/cancelButton"
             android:layout_width="56dp"
             android:layout_height="56dp"
@@ -151,7 +151,7 @@
             android:backgroundTint="@color/colorPrimary"
             android:src="@drawable/ic_cancel" />
 
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/okButton"
             android:layout_width="56dp"
             android:layout_height="56dp"

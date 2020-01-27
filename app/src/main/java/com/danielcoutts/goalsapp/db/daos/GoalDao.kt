@@ -1,7 +1,7 @@
 package com.danielcoutts.goalsapp.db.daos
 
-import android.arch.persistence.room.*
-import android.arch.persistence.room.OnConflictStrategy.REPLACE
+import androidx.room.*
+import androidx.room.OnConflictStrategy.REPLACE
 import com.danielcoutts.goalsapp.etc.Recurrence
 import com.danielcoutts.goalsapp.db.entities.Goal
 import io.reactivex.Flowable

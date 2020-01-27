@@ -1,9 +1,8 @@
 package com.danielcoutts.goalsapp.sections.main.adapters
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import com.danielcoutts.goalsapp.db.entities.*
-import com.danielcoutts.goalsapp.etc.Recurrence
 import com.danielcoutts.goalsapp.sections.main.data.GoalListData
 import com.danielcoutts.goalsapp.views.GoalView
 import io.reactivex.subjects.PublishSubject

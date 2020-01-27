@@ -1,9 +1,9 @@
 package com.danielcoutts.goalsapp.base
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.View
 import io.reactivex.disposables.CompositeDisposable
 import kotlin.reflect.KClass
