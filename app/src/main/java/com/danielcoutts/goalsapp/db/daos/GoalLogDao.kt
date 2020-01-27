@@ -1,7 +1,7 @@
 package com.danielcoutts.goalsapp.db.daos
 
-import android.arch.persistence.room.*
-import android.arch.persistence.room.OnConflictStrategy.REPLACE
+import androidx.room.*
+import androidx.room.OnConflictStrategy.REPLACE
 import com.danielcoutts.goalsapp.db.entities.*
 import com.danielcoutts.goalsapp.etc.LocalDateConstants
 import com.danielcoutts.goalsapp.etc.Recurrence
@@ -32,7 +32,6 @@ abstract class GoalLogDao {
     @Transaction
     open fun logForGoal(goal: Goal) {
         val date: LocalDate = when(goal.recurrence) {
-
             Recurrence.DAILY -> LocalDateConstants.today
             Recurrence.WEEKLY -> LocalDateConstants.week
             Recurrence.MONTHLY -> LocalDateConstants.month

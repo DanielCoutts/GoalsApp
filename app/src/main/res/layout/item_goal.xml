@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:paddingBottom="8dp">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
@@ -93,7 +93,7 @@
             android:padding="4dp"
             android:src="@drawable/ic_log_number"
             app:layout_constraintEnd_toStartOf="@id/deleteButton" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
         android:layout_width="match_parent"

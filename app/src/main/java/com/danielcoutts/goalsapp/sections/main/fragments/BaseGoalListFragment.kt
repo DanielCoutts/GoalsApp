@@ -2,9 +2,8 @@ package com.danielcoutts.goalsapp.sections.main.fragments
 
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,9 +40,9 @@ open class BaseGoalListFragment : BaseFragment<MainViewModel>() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeBy(
-                    onNext = {
-                        showLogDialogForGoal(it)
-                    }
+                        onNext = {
+                            showLogDialogForGoal(it)
+                        }
                 )
                 .addTo(compositeDisposable)
 
@@ -62,9 +61,9 @@ open class BaseGoalListFragment : BaseFragment<MainViewModel>() {
         AlertDialog.Builder(context, android.R.style.Theme_Material_Light_Dialog_Alert)
                 .setTitle(goal.title)
                 .setMessage("Are you sure you want to delete this goal?")
-                .setPositiveButton("Delete", { _, _ ->
+                .setPositiveButton("Delete") { _, _ ->
                     viewModel.deleteGoal(goal)
-                })
+                }
                 .setNegativeButton("Cancel", null)
                 .setIcon(R.drawable.ic_delete)
                 .create()
@@ -75,9 +74,9 @@ open class BaseGoalListFragment : BaseFragment<MainViewModel>() {
         AlertDialog.Builder(context, android.R.style.Theme_Material_Light_Dialog_Alert)
                 .setTitle(goal.title)
                 .setMessage("Are you sure you want to log this goal?")
-                .setPositiveButton("Log", { _, _ ->
+                .setPositiveButton("Log") { _, _ ->
                     viewModel.logForGoal(goal)
-                })
+                }
                 .setNegativeButton("Cancel", null)
                 .setIcon(R.drawable.ic_log_number)
                 .create()
