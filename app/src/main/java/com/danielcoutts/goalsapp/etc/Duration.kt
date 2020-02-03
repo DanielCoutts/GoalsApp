@@ -1,6 +1,6 @@
 package com.danielcoutts.goalsapp.etc
 
-class Duration(val totalMinutes: Long = 0) {
+data class Duration(val totalMinutes: Long = 0) {
 
     private constructor(hours: Long, minutes: Long) : this(hours * 60 + minutes)
 
@@ -10,26 +10,14 @@ class Duration(val totalMinutes: Long = 0) {
     val minutes: Long
         get() = totalMinutes - hours * 60
 
-    override fun toString(): String {
-        return "$hours:$minutes"
-    }
+    override fun toString() = "$hours:$minutes"
 
-    operator fun plus(other: Duration): Duration {
-        return Duration(this.totalMinutes + other.totalMinutes)
-    }
+    operator fun plus(other: Duration) =
+            Duration(this.totalMinutes + other.totalMinutes)
 
-    operator fun minus(other: Duration): Duration {
-        return Duration(this.totalMinutes - other.totalMinutes)
-    }
+    operator fun minus(other: Duration) =
+            Duration(this.totalMinutes - other.totalMinutes)
 
-    override fun equals(other: Any?): Boolean {
-        return if (other is Duration)
-            this.totalMinutes == other.totalMinutes
-        else
-            super.equals(other)
-    }
-
-    operator fun compareTo(other: Duration) : Int {
-        return (this.totalMinutes - other.totalMinutes).toInt()
-    }
+    operator fun compareTo(other: Duration): Int =
+            (this.totalMinutes - other.totalMinutes).toInt()
 }

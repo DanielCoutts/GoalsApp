@@ -1,33 +1,35 @@
 package com.danielcoutts.goalsapp.sections.create
 
+import androidx.lifecycle.liveData
 import com.danielcoutts.goalsapp.base.BaseViewModel
 import com.danielcoutts.goalsapp.db.entities.Goal
 import com.danielcoutts.goalsapp.etc.Recurrence
-import io.reactivex.Completable
-import io.reactivex.Single
-import io.reactivex.disposables.CompositeDisposable
 
 class CreateGoalViewModel : BaseViewModel() {
 
-    val model = CreateGoalModel()
+    private val model = CreateGoalModel()
 
     var verb = ""
     var number = 0
     var noun = ""
     var recurrence: Recurrence? = null
 
-    override fun onCleared() {
-        super.onCleared()
-    }
+    fun createGoal() = liveData {
+        val isValid = isValid()
 
-    fun createGoal(): Single<Boolean> {
-        return if (isValid()) {
-            model.createGoal(Goal("$verb $number $noun", recurrence!!, number)).toSingleDefault(true)
-        } else {
-            Single.just(false)
+        if (isValid) {
+            model.createGoal(
+                    Goal("$verb $number $noun", recurrence!!, number)
+            )
         }
+
+        emit(isValid)
     }
 
-    private fun isValid(): Boolean = !verb.isEmpty() && number > 0 && !noun.isEmpty() && recurrence != null
+    private fun isValid(): Boolean =
+            verb.isNotEmpty()
+                    && number > 0
+                    && noun.isNotEmpty()
+                    && recurrence != null
 
 }

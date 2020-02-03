@@ -7,7 +7,8 @@ import com.danielcoutts.goalsapp.sections.main.fragments.DailyGoalListFragment
 import com.danielcoutts.goalsapp.sections.main.fragments.MonthlyGoalListFragment
 import com.danielcoutts.goalsapp.sections.main.fragments.WeeklyGoalListFragment
 
-class GoalsPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+class GoalsPagerAdapter(fragmentManager: FragmentManager)
+    : FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     private val pageTitles = listOf("Daily", "Weekly", "Monthly")
     private val fragments = listOf(DailyGoalListFragment(), WeeklyGoalListFragment(), MonthlyGoalListFragment())

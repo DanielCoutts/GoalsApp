@@ -4,29 +4,32 @@ import com.danielcoutts.goalsapp.db.AppDatabase
 import com.danielcoutts.goalsapp.db.entities.Goal
 import com.danielcoutts.goalsapp.etc.LocalDateConstants
 import com.danielcoutts.goalsapp.etc.Recurrence
-import io.reactivex.Completable
 
 class MainModel {
     private val goalDao = AppDatabase.instance.goalDao()
     private val goalLogDao = AppDatabase.instance.goalLogDao()
 
-    val dailyGoals = goalDao.goals(Recurrence.DAILY).distinctUntilChanged()
+    fun dailyGoals() =
+            goalDao.goals(Recurrence.DAILY) // TODO Make distinct
 
-    val weeklyGoals = goalDao.goals(Recurrence.WEEKLY).distinctUntilChanged()
+    fun weeklyGoals() =
+            goalDao.goals(Recurrence.WEEKLY) // TODO Make distinct
 
-    val monthlyGoals = goalDao.goals(Recurrence.MONTHLY).distinctUntilChanged()
+    fun monthlyGoals() =
+            goalDao.goals(Recurrence.MONTHLY) // TODO Make distinct
 
-    val dailyGoalLogs = goalLogDao.logs(LocalDateConstants.today, Recurrence.DAILY).distinctUntilChanged()
+    fun dailyGoalLogs() =
+            goalLogDao.logs(LocalDateConstants.today, Recurrence.DAILY) // TODO Make distinct
 
-    val weeklyGoalLogs = goalLogDao.logs(LocalDateConstants.week, Recurrence.WEEKLY).distinctUntilChanged()
+    fun weeklyGoalLogs() =
+            goalLogDao.logs(LocalDateConstants.week, Recurrence.WEEKLY) // TODO Make distinct
 
-    val monthlyGoalLogs = goalLogDao.logs(LocalDateConstants.month, Recurrence.MONTHLY).distinctUntilChanged()
+    fun monthlyGoalLogs() =
+            goalLogDao.logs(LocalDateConstants.month, Recurrence.MONTHLY) // TODO Make distinct
 
-    fun deleteGoal(goal: Goal) = Completable.fromAction {
-        goalDao.deleteGoal(goal)
-    }
+    suspend fun deleteGoal(goal: Goal) =
+            goalDao.deleteGoal(goal)
 
-    fun logForGoal(goal: Goal) = Completable.fromAction {
-        goalLogDao.logForGoal(goal)
-    }
+    suspend fun logForGoal(goal: Goal) =
+            goalLogDao.logForGoal(goal)
 }

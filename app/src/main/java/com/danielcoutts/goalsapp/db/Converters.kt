@@ -4,39 +4,39 @@ import androidx.room.TypeConverter
 import com.danielcoutts.goalsapp.etc.Duration
 import com.danielcoutts.goalsapp.etc.GoalType
 import com.danielcoutts.goalsapp.etc.Recurrence
-import org.joda.time.LocalDate
+import java.time.LocalDate
 
 class Converters {
 
     @TypeConverter
     fun intToRecurrence(value: Int?): Recurrence? =
-            if (value == null) null
-            else Recurrence.values()[value]
+            value?.let { Recurrence.values()[it] }
 
     @TypeConverter
-    fun recurrenceToInt(value: Recurrence?): Int? = value?.ordinal
+    fun recurrenceToInt(value: Recurrence?): Int? =
+            value?.ordinal
 
     @TypeConverter
     fun intToGoalType(value: Int?): GoalType? =
-            if (value == null) null
-            else GoalType.values()[value]
+            value?.let { GoalType.values()[it] }
 
     @TypeConverter
-    fun goalTypeToInt(value: GoalType?): Int? = value?.ordinal
+    fun goalTypeToInt(value: GoalType?): Int? =
+            value?.ordinal
 
     @TypeConverter
     fun longToDuration(value: Long?): Duration? =
-            if (value == null) null
-            else Duration(value)
+            value?.let { Duration(it) }
 
     @TypeConverter
-    fun durationToLong(value: Duration?): Long? = value?.totalMinutes
+    fun durationToLong(value: Duration?): Long? =
+            value?.totalMinutes
 
     @TypeConverter
     fun stringToLocalDate(value: String?): LocalDate? =
-            if (value == null) null
-            else LocalDate(value)
+            value?.let { LocalDate.parse(it) }
 
     @TypeConverter
-    fun localDateToString(value: LocalDate?): String? = value.toString()
+    fun localDateToString(value: LocalDate?): String? =
+            value?.toString()
 }

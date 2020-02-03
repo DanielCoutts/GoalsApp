@@ -1,26 +1,22 @@
 package com.danielcoutts.goalsapp.sections.create
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.EditText
+import androidx.activity.viewModels
+import androidx.lifecycle.observe
 import com.google.android.material.snackbar.Snackbar
 import com.danielcoutts.goalsapp.R
 import com.danielcoutts.goalsapp.base.BaseActivity
 import com.danielcoutts.goalsapp.etc.Recurrence
-import com.pawegio.kandroid.textWatcher
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.rxkotlin.addTo
-import io.reactivex.rxkotlin.subscribeBy
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_create_goal.*
 
+class CreateGoalActivity : BaseActivity() {
 
-class CreateGoalActivity : BaseActivity<CreateGoalViewModel>() {
-    override val viewModelClass = CreateGoalViewModel::class
+    private val viewModel: CreateGoalViewModel by viewModels()
 
     private lateinit var errorSnackbar: Snackbar
-
-    override fun subscribeToStreams() {
-
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,49 +36,63 @@ class CreateGoalActivity : BaseActivity<CreateGoalViewModel>() {
         }
 
         okButton.setOnClickListener {
-            viewModel.createGoal()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeBy(
-                            onSuccess = { success ->
-                                if(success) finish()
-                                else errorSnackbar.show()
-                            },
-                            onError = {
-
-                            }
-                    )
-                    .addTo(compositeDisposable)
-        }
-
-        verb.textWatcher {
-            onTextChanged { text, _, _, _ ->
-                viewModel.verb = text.toString()
+            viewModel.createGoal().observe(owner = this) { isSuccessful ->
+                when {
+                    isSuccessful -> finish()
+                    else -> errorSnackbar.show()
+                }
             }
         }
 
-        number.textWatcher {
-            onTextChanged { text, _, _, _ ->
-                try {
-                    val number = text.toString().toInt()
-                    viewModel.number = number
-                } catch (ignore: NumberFormatException){}
-            }
-        }
+        verb.addTextWatcher(
+                onTextChanged = { text, _, _, _ ->
+                    viewModel.verb = text.toString()
+                }
+        )
 
-        noun.textWatcher {
-            onTextChanged { text, _, _, _ ->
-                viewModel.noun = text.toString()
-            }
-        }
+        number.addTextWatcher(
+                onTextChanged = { text, _, _, _ ->
+                    try {
+                        val number = text.toString().toInt()
+                        viewModel.number = number
+                    } catch (ignore: NumberFormatException) {
+                    }
+                }
+        )
+
+        noun.addTextWatcher(
+                onTextChanged = { text, _, _, _ ->
+                    viewModel.noun = text.toString()
+                }
+        )
 
         every.setOnCheckedChangeListener { _, id ->
-            viewModel.recurrence = when(id) {
-                R.id.day ->  Recurrence.DAILY
+            viewModel.recurrence = when (id) {
+                R.id.day -> Recurrence.DAILY
                 R.id.week -> Recurrence.WEEKLY
                 R.id.month -> Recurrence.MONTHLY
                 else -> null
             }
         }
+    }
+
+    private fun EditText.addTextWatcher(
+            afterTextChanged: ((s: Editable?) -> Unit)? = null,
+            beforeTextChanged: ((s: CharSequence?, start: Int, count: Int, after: Int) -> Unit)? = null,
+            onTextChanged: ((s: CharSequence?, start: Int, end: Int, count: Int) -> Unit)? = null
+    ) {
+        addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                afterTextChanged?.invoke(s)
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                beforeTextChanged?.invoke(s, start, count, after)
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                onTextChanged?.invoke(s, start, before, count)
+            }
+        })
     }
 }

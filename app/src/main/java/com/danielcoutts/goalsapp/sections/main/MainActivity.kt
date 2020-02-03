@@ -2,15 +2,16 @@ package com.danielcoutts.goalsapp.sections.main
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import com.danielcoutts.goalsapp.R
 import com.danielcoutts.goalsapp.base.BaseActivity
 import com.danielcoutts.goalsapp.sections.create.CreateGoalActivity
 import com.danielcoutts.goalsapp.sections.main.adapters.GoalsPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity<MainViewModel>() {
+class MainActivity : BaseActivity() {
 
-    override val viewModelClass = MainViewModel::class
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,9 +24,5 @@ class MainActivity : BaseActivity<MainViewModel>() {
         addGoalButton.setOnClickListener {
             startActivity(Intent(this, CreateGoalActivity::class.java))
         }
-    }
-
-    override fun subscribeToStreams() {
-
     }
 }

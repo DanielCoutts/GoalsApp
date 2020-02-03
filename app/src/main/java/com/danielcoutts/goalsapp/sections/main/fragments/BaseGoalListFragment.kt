@@ -7,54 +7,41 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.observe
 import com.danielcoutts.goalsapp.R
 
 import com.danielcoutts.goalsapp.base.BaseFragment
 import com.danielcoutts.goalsapp.db.entities.Goal
 import com.danielcoutts.goalsapp.sections.main.MainViewModel
 import com.danielcoutts.goalsapp.sections.main.adapters.GoalListAdapter
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.rxkotlin.addTo
-import io.reactivex.rxkotlin.subscribeBy
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_goal_list.view.*
 
-open class BaseGoalListFragment : BaseFragment<MainViewModel>() {
-    override val viewModelClass = MainViewModel::class
+open class BaseGoalListFragment : BaseFragment() {
 
-    protected val adapter = GoalListAdapter()
+    protected val viewModel: MainViewModel by activityViewModels()
+
+    protected val goalListAdapter = GoalListAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View? =
+            inflater.inflate(R.layout.fragment_goal_list, container, false)
 
-        val view = inflater.inflate(R.layout.fragment_goal_list, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        view.recyclerView.layoutManager = LinearLayoutManager(context)
-        view.recyclerView.adapter = adapter
+        view.recyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = goalListAdapter
+        }
 
-        return view
-    }
+        goalListAdapter.goalLogListener = { goal ->
+            showLogDialogForGoal(goal)
+        }
 
-    override fun subscribeToStreams(view: View) {
-        adapter.goalLogEvents
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeBy(
-                        onNext = {
-                            showLogDialogForGoal(it)
-                        }
-                )
-                .addTo(compositeDisposable)
-
-        adapter.goalDeleteEvents
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeBy(
-                        onNext = {
-                            showDeleteDialogForGoal(it)
-                        }
-                )
-                .addTo(compositeDisposable)
+        goalListAdapter.goalDeleteListener = { goal ->
+            showDeleteDialogForGoal(goal)
+        }
     }
 
     private fun showDeleteDialogForGoal(goal: Goal) {
