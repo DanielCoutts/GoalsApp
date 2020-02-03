@@ -3,7 +3,7 @@ package com.danielcoutts.goalsapp.db.entities
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.danielcoutts.goalsapp.etc.Recurrence
-import org.joda.time.LocalDate
+import java.time.LocalDate
 
 @Entity(tableName = "goals")
 class Goal(var title: String, val recurrence: Recurrence, var target: Int) {
