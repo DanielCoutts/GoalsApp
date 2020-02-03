@@ -1,30 +1,30 @@
 package com.danielcoutts.goalsapp.db.daos
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
 import com.danielcoutts.goalsapp.etc.Recurrence
 import com.danielcoutts.goalsapp.db.entities.Goal
-import io.reactivex.Flowable
 
 @Dao
 interface GoalDao {
 
     @Query("select * from goals")
-    fun goals(): Flowable<List<Goal>>
+    fun goals(): LiveData<List<Goal>>
 
     @Query("select * from goals where recurrence = :recurrence")
-    fun goals(recurrence: Recurrence) : Flowable<List<Goal>>
+    fun goals(recurrence: Recurrence) : LiveData<List<Goal>>
 
     @Query("select * from goals where id = :id")
-    fun goal(id: Long): Flowable<Goal>
+    suspend fun goal(id: Long): Goal
 
     @Insert(onConflict = REPLACE)
-    fun insertGoal(goal: Goal)
+    suspend fun insertGoal(goal: Goal)
 
     @Update(onConflict = REPLACE)
-    fun updateGoal(goal: Goal)
+    suspend fun updateGoal(goal: Goal)
 
     @Delete
-    fun deleteGoal(goal: Goal)
+    suspend fun deleteGoal(goal: Goal)
 
 }

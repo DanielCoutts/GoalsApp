@@ -1,24 +1,19 @@
 package com.danielcoutts.goalsapp.sections.main.fragments
 
+import android.os.Bundle
 import android.view.View
-import com.danielcoutts.goalsapp.etc.Recurrence
+import androidx.lifecycle.observe
 import com.danielcoutts.goalsapp.sections.main.data.GoalListData
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.rxkotlin.addTo
-import io.reactivex.rxkotlin.subscribeBy
-import io.reactivex.schedulers.Schedulers
 
 class WeeklyGoalListFragment : BaseGoalListFragment() {
 
-    override fun subscribeToStreams(view: View) {
-        super.subscribeToStreams(view)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        viewModel.weekViewState()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeBy {
-                    adapter.setGoalListData(GoalListData(it.goals, it.logs))
-                }
-                .addTo(compositeDisposable)
+        viewModel.weekViewState().observe(owner = viewLifecycleOwner) { viewState ->
+            goalListAdapter.setGoalListData(
+                    GoalListData(viewState.goals, viewState.logs)
+            )
+        }
     }
 }

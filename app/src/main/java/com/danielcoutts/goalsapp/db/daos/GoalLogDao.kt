@@ -1,36 +1,36 @@
 package com.danielcoutts.goalsapp.db.daos
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
 import com.danielcoutts.goalsapp.db.entities.*
 import com.danielcoutts.goalsapp.etc.LocalDateConstants
 import com.danielcoutts.goalsapp.etc.Recurrence
-import io.reactivex.Flowable
-import org.joda.time.LocalDate
+import java.time.LocalDate
 
 @Dao
-abstract class GoalLogDao {
+interface GoalLogDao {
 
     @Query("select * from goal_logs where date = :date")
-    abstract fun logs(date: LocalDate): Flowable<List<GoalLog>>
+    fun logs(date: LocalDate): LiveData<List<GoalLog>>
 
     @Query("select * from goal_logs where recurrence = :recurrence and date = :date")
-    abstract fun logs(date: LocalDate, recurrence: Recurrence): Flowable<List<GoalLog>>
+    fun logs(date: LocalDate, recurrence: Recurrence): LiveData<List<GoalLog>>
 
     @Query("select * from goal_logs where goalId = :goalId and date = :date")
-    abstract fun log(goalId: Long, date: LocalDate): Flowable<GoalLog>
+    suspend fun log(goalId: Long, date: LocalDate): GoalLog
 
     @Query("select * from goal_logs where goalId = :goalId and date = :date")
-    abstract fun getLog(goalId: Long, date: LocalDate): GoalLog?
+    suspend fun getLog(goalId: Long, date: LocalDate): GoalLog?
 
     @Insert(onConflict = REPLACE)
-    abstract fun insertLog(log: GoalLog)
+    suspend fun insertLog(log: GoalLog)
 
     @Update(onConflict = REPLACE)
-    abstract fun updateLog(log: GoalLog)
+    suspend fun updateLog(log: GoalLog)
 
     @Transaction
-    open fun logForGoal(goal: Goal) {
+    suspend fun logForGoal(goal: Goal) {
         val date: LocalDate = when(goal.recurrence) {
             Recurrence.DAILY -> LocalDateConstants.today
             Recurrence.WEEKLY -> LocalDateConstants.week
