@@ -3,23 +3,25 @@ package com.danielcoutts.goalsapp.sections.main.adapters
 import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
 import com.danielcoutts.goalsapp.data.db.entities.*
+import com.danielcoutts.goalsapp.data.models.Goal
+import com.danielcoutts.goalsapp.data.models.GoalLog
 import com.danielcoutts.goalsapp.sections.main.data.GoalListData
 import com.danielcoutts.goalsapp.views.GoalView
 import kotlinx.android.synthetic.main.item_goal.view.*
 
 class GoalListAdapter : RecyclerView.Adapter<GoalListAdapter.GoalViewHolder>() {
 
-    private var goals: List<GoalEntity> = listOf()
+    private var goals: List<Goal> = listOf()
 
-    private var logs: Map<Long, GoalLogEntity> = mapOf()
+    private var logs: Map<Long, GoalLog> = mapOf()
 
-    var goalDeleteListener: ((GoalEntity) -> Unit)? = null
-    var goalLogListener: ((GoalEntity) -> Unit)? = null
+    var goalDeleteListener: ((Goal) -> Unit)? = null
+    var goalLogListener: ((Goal) -> Unit)? = null
 
     fun setGoalListData(data: GoalListData) {
         goals = data.goals
 
-        val newLogs = mutableMapOf<Long, GoalLogEntity>()
+        val newLogs = mutableMapOf<Long, GoalLog>()
         for (log in data.logs) newLogs[log.goalId] = log
         logs = newLogs
 
@@ -46,10 +48,10 @@ class GoalListAdapter : RecyclerView.Adapter<GoalListAdapter.GoalViewHolder>() {
     }
 
     class GoalViewHolder(val goalItemView: GoalView) : RecyclerView.ViewHolder(goalItemView) {
-        fun bind(goal: GoalEntity, log: GoalLogEntity?) {
+        fun bind(goal: Goal, log: GoalLog?) {
             with(goalItemView) {
-                this.goal = goal
-                this.log = log
+                this.goal = goal as Goal.Number
+                this.log = log as? GoalLog.Number
             }
         }
     }

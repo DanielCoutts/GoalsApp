@@ -1,9 +1,9 @@
 package com.danielcoutts.goalsapp.sections.main.data
 
-import com.danielcoutts.goalsapp.data.db.entities.GoalEntity
-import com.danielcoutts.goalsapp.data.db.entities.GoalLogEntity
+import com.danielcoutts.goalsapp.data.models.Goal
+import com.danielcoutts.goalsapp.data.models.GoalLog
 
 class GoalListData(
-        val goals: List<GoalEntity>,
-        val logs: List<GoalLogEntity>
+        val goals: List<Goal>,
+        val logs: List<GoalLog>
 )

@@ -8,6 +8,7 @@ import com.danielcoutts.goalsapp.data.db.etc.LocalDateValues
 import com.danielcoutts.goalsapp.data.models.Recurrence
 import com.danielcoutts.goalsapp.data.models.Goal
 import com.danielcoutts.goalsapp.data.models.GoalLog
+import com.danielcoutts.goalsapp.data.utils.toEntity
 import com.danielcoutts.goalsapp.data.utils.toGoalLog
 
 object GoalLogRepositoryImpl : GoalLogRepository {
@@ -23,15 +24,15 @@ object GoalLogRepositoryImpl : GoalLogRepository {
                     }
 
     override suspend fun log(goal: Goal.Time, mins: Int) {
-        // TODO
+        goalLogDao.logForGoal(goal.toEntity(), mins)
     }
 
     override suspend fun log(goal: Goal.Number, number: Int) {
-        // TODO
+        goalLogDao.logForGoal(goal.toEntity(), number)
     }
 
     override suspend fun log(goal: Goal.Checkbox) {
-        // TODO
+        goalLogDao.logForGoal(goal.toEntity(), 1)
     }
 
     private fun logs(recurrence: Recurrence): LiveData<List<GoalLogEntity>> =

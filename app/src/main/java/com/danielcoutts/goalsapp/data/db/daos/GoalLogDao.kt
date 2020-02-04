@@ -26,26 +26,27 @@ internal interface GoalLogDao {
     @Insert(onConflict = REPLACE)
     suspend fun insertLog(log: GoalLogEntity)
 
-    @Update(onConflict = REPLACE)
-    suspend fun updateLog(log: GoalLogEntity)
-
     @Transaction
-    suspend fun logForGoal(goal: GoalEntity) {
-        val date: LocalDate = when(goal.recurrence) {
+    suspend fun logForGoal(goal: GoalEntity, amount: Int) {
+        val date: LocalDate = when (goal.recurrence) {
             Recurrence.DAILY -> LocalDateValues.today
             Recurrence.WEEKLY -> LocalDateValues.week
             Recurrence.MONTHLY -> LocalDateValues.month
         }
 
-        var log = getLog(goal.id, date)
+        val updatedLog = getLog(goal.id, date)?.let {
+            it.copy(numberLogged = it.numberLogged + amount)
+        }
 
-        if (log == null) {
-            log = GoalLogEntity(goal.id, goal.recurrence, goal.goalType, date, 1)
-            insertLog(log)
-        }
-        else if (log.numberLogged < goal.target) {
-            log.numberLogged++
-            updateLog(log)
-        }
+        val log = updatedLog
+                ?: GoalLogEntity(
+                        goalId = goal.id,
+                        recurrence = goal.recurrence,
+                        goalType = goal.goalType,
+                        date = date,
+                        numberLogged = amount
+                )
+
+        insertLog(log)
     }
 }

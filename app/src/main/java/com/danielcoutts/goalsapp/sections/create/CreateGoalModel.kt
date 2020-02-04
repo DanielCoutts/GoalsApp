@@ -1,11 +1,12 @@
 package com.danielcoutts.goalsapp.sections.create
 
-import com.danielcoutts.goalsapp.data.db.AppDatabase
-import com.danielcoutts.goalsapp.data.db.entities.GoalEntity
+import com.danielcoutts.goalsapp.data.models.Goal
+import com.danielcoutts.goalsapp.data.repos.GoalRepository
+import com.danielcoutts.goalsapp.data.repos.GoalRepositoryImpl
 
 class CreateGoalModel {
-    private val goalDao = AppDatabase.instance.goalDao()
+    private val goalRepo: GoalRepository = GoalRepositoryImpl
 
-    suspend fun createGoal(goal: GoalEntity) =
-            goalDao.insertGoal(goal)
+    suspend fun createGoal(goal: Goal) =
+            goalRepo.createGoal(goal)
 }

@@ -16,26 +16,12 @@ import java.time.LocalDate
                     childColumns = ["goalId"],
                     onDelete = ForeignKey.CASCADE)
         ])
-internal class GoalLogEntity(
+internal data class GoalLogEntity(
+        @PrimaryKey(autoGenerate = true)
+        val id: Long = 0,
         val goalId: Long,
         val recurrence: Recurrence,
         val goalType: GoalType,
         val date: LocalDate,
-        var numberLogged: Int
-) {
-
-    constructor(
-            id: Long,
-            goalId: Long,
-            recurrence: Recurrence,
-            goalType: GoalType,
-            date: LocalDate,
-            numberLogged: Int
-    ) : this(goalId, recurrence, goalType, date, numberLogged) {
-        this.id = id
-    }
-
-    @PrimaryKey(autoGenerate = true)
-    var id: Long = 0
-
-}
+        val numberLogged: Int
+)

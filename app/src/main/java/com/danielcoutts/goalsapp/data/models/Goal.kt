@@ -4,26 +4,26 @@ import java.time.LocalDate
 
 sealed class Goal {
     data class Time(
-            override val id: Long,
+            override val id: Long = 0,
             override val title: String,
             override val recurrence: Recurrence,
-            override val dateCreated: LocalDate,
+            override val dateCreated: LocalDate = LocalDate.now(),
             val targetMins: Int
     ) : Goal()
 
     data class Number(
-            override val id: Long,
+            override val id: Long = 0,
             override val title: String,
             override val recurrence: Recurrence,
-            override val dateCreated: LocalDate,
+            override val dateCreated: LocalDate = LocalDate.now(),
             val target: Int
     ) : Goal()
 
     data class Checkbox(
-            override val id: Long,
+            override val id: Long = 0,
             override val title: String,
             override val recurrence: Recurrence,
-            override val dateCreated: LocalDate
+            override val dateCreated: LocalDate = LocalDate.now()
     ) : Goal()
 
     abstract val id: Long

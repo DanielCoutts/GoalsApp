@@ -4,6 +4,7 @@ import androidx.lifecycle.map
 import com.danielcoutts.goalsapp.data.db.AppDatabase
 import com.danielcoutts.goalsapp.data.models.Recurrence
 import com.danielcoutts.goalsapp.data.models.Goal
+import com.danielcoutts.goalsapp.data.utils.toEntity
 import com.danielcoutts.goalsapp.data.utils.toGoal
 
 object GoalRepositoryImpl : GoalRepository {
@@ -18,10 +19,10 @@ object GoalRepositoryImpl : GoalRepository {
             }
 
     override suspend fun createGoal(goal: Goal) {
-        // TODO
+        goalDao.insertGoal(goal.toEntity())
     }
 
     override suspend fun deleteGoal(goal: Goal) {
-        // TODO
+        goalDao.deleteGoal(goal.toEntity())
     }
 }
