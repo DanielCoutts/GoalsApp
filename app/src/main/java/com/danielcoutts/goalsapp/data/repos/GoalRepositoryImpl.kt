@@ -1,9 +1,10 @@
-package com.danielcoutts.goalsapp.repository
+package com.danielcoutts.goalsapp.data.repos
 
 import androidx.lifecycle.map
-import com.danielcoutts.goalsapp.repository.db.AppDatabase
-import com.danielcoutts.goalsapp.repository.etc.Recurrence
-import com.danielcoutts.goalsapp.repository.utils.toGoal
+import com.danielcoutts.goalsapp.data.db.AppDatabase
+import com.danielcoutts.goalsapp.data.models.Recurrence
+import com.danielcoutts.goalsapp.data.models.Goal
+import com.danielcoutts.goalsapp.data.utils.toGoal
 
 object GoalRepositoryImpl : GoalRepository {
 

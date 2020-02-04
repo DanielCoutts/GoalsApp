@@ -1,12 +1,11 @@
-package com.danielcoutts.goalsapp.repository.db.entities
+package com.danielcoutts.goalsapp.data.db.entities
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.danielcoutts.goalsapp.repository.Goal
-import com.danielcoutts.goalsapp.repository.etc.GoalType
-import com.danielcoutts.goalsapp.repository.etc.Recurrence
+import com.danielcoutts.goalsapp.data.db.etc.GoalType
+import com.danielcoutts.goalsapp.data.models.Recurrence
 import java.time.LocalDate
 
 @Entity(tableName = "goal_logs",
@@ -17,7 +16,7 @@ import java.time.LocalDate
                     childColumns = ["goalId"],
                     onDelete = ForeignKey.CASCADE)
         ])
-class GoalLogEntity(
+internal class GoalLogEntity(
         val goalId: Long,
         val recurrence: Recurrence,
         val goalType: GoalType,

@@ -1,12 +1,12 @@
-package com.danielcoutts.goalsapp.repository.db
+package com.danielcoutts.goalsapp.data.db
 
 import androidx.room.TypeConverter
-import com.danielcoutts.goalsapp.repository.etc.Duration
-import com.danielcoutts.goalsapp.repository.etc.GoalType
-import com.danielcoutts.goalsapp.repository.etc.Recurrence
+import com.danielcoutts.goalsapp.data.db.etc.Duration
+import com.danielcoutts.goalsapp.data.db.etc.GoalType
+import com.danielcoutts.goalsapp.data.models.Recurrence
 import java.time.LocalDate
 
-class Converters {
+internal class Converters {
 
     @TypeConverter
     fun intToRecurrence(value: Int?): Recurrence? =

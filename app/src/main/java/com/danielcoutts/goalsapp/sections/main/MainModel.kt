@@ -1,9 +1,9 @@
 package com.danielcoutts.goalsapp.sections.main
 
-import com.danielcoutts.goalsapp.repository.db.AppDatabase
-import com.danielcoutts.goalsapp.repository.db.entities.GoalEntity
-import com.danielcoutts.goalsapp.repository.etc.LocalDateValues
-import com.danielcoutts.goalsapp.repository.etc.Recurrence
+import com.danielcoutts.goalsapp.data.db.AppDatabase
+import com.danielcoutts.goalsapp.data.db.entities.GoalEntity
+import com.danielcoutts.goalsapp.data.db.etc.LocalDateValues
+import com.danielcoutts.goalsapp.data.models.Recurrence
 
 class MainModel {
     private val goalDao = AppDatabase.instance.goalDao()

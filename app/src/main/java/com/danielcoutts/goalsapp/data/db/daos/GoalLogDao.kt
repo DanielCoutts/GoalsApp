@@ -1,15 +1,15 @@
-package com.danielcoutts.goalsapp.repository.db.daos
+package com.danielcoutts.goalsapp.data.db.daos
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
-import com.danielcoutts.goalsapp.repository.db.entities.*
-import com.danielcoutts.goalsapp.repository.etc.LocalDateValues
-import com.danielcoutts.goalsapp.repository.etc.Recurrence
+import com.danielcoutts.goalsapp.data.db.entities.*
+import com.danielcoutts.goalsapp.data.db.etc.LocalDateValues
+import com.danielcoutts.goalsapp.data.models.Recurrence
 import java.time.LocalDate
 
 @Dao
-interface GoalLogDao {
+internal interface GoalLogDao {
 
     @Query("select * from goal_logs where date = :date")
     fun logs(date: LocalDate): LiveData<List<GoalLogEntity>>

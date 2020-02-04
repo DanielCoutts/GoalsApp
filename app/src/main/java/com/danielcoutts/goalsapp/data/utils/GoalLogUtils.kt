@@ -1,8 +1,8 @@
-package com.danielcoutts.goalsapp.repository.utils
+package com.danielcoutts.goalsapp.data.utils
 
-import com.danielcoutts.goalsapp.repository.GoalLog
-import com.danielcoutts.goalsapp.repository.db.entities.GoalLogEntity
-import com.danielcoutts.goalsapp.repository.etc.GoalType
+import com.danielcoutts.goalsapp.data.models.GoalLog
+import com.danielcoutts.goalsapp.data.db.entities.GoalLogEntity
+import com.danielcoutts.goalsapp.data.db.etc.GoalType
 
 internal fun GoalLog.toEntity() = GoalLogEntity(
         id = this.id,
