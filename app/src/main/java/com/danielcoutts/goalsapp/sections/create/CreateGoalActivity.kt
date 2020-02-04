@@ -9,7 +9,7 @@ import androidx.lifecycle.observe
 import com.google.android.material.snackbar.Snackbar
 import com.danielcoutts.goalsapp.R
 import com.danielcoutts.goalsapp.base.BaseActivity
-import com.danielcoutts.goalsapp.etc.Recurrence
+import com.danielcoutts.goalsapp.repository.etc.Recurrence
 import kotlinx.android.synthetic.main.activity_create_goal.*
 
 class CreateGoalActivity : BaseActivity() {

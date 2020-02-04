@@ -1,4 +1,4 @@
-package com.danielcoutts.goalsapp.etc
+package com.danielcoutts.goalsapp.repository.etc
 
 enum class Recurrence {
     DAILY, WEEKLY, MONTHLY;

@@ -6,15 +6,15 @@ import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.core.view.updateLayoutParams
 import com.danielcoutts.goalsapp.R
-import com.danielcoutts.goalsapp.db.entities.Goal
-import com.danielcoutts.goalsapp.db.entities.GoalLog
+import com.danielcoutts.goalsapp.repository.db.entities.GoalEntity
+import com.danielcoutts.goalsapp.repository.db.entities.GoalLogEntity
 import kotlinx.android.synthetic.main.item_goal.view.*
 
 class GoalView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    var goal: Goal? = null
+    var goal: GoalEntity? = null
         set(value) {
             field = value
             if (value == null) return
@@ -26,7 +26,7 @@ class GoalView @JvmOverloads constructor(
             remainingText.text = "${value.target} remaining"
         }
 
-    var log: GoalLog? = null
+    var log: GoalLogEntity? = null
         set(value) {
             field = value
             val currentGoal = goal

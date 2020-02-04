@@ -1,18 +1,18 @@
-package com.danielcoutts.goalsapp.db
+package com.danielcoutts.goalsapp.repository.db
 
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.danielcoutts.goalsapp.application.MyApplication
-import com.danielcoutts.goalsapp.db.daos.GoalDao
-import com.danielcoutts.goalsapp.db.daos.GoalLogDao
-import com.danielcoutts.goalsapp.db.entities.*
+import com.danielcoutts.goalsapp.repository.db.daos.GoalDao
+import com.danielcoutts.goalsapp.repository.db.daos.GoalLogDao
+import com.danielcoutts.goalsapp.repository.db.entities.*
 
 @Database(
         entities = [
-            Goal::class,
-            GoalLog::class
+            GoalEntity::class,
+            GoalLogEntity::class
         ],
         version = 1,
         exportSchema = false
