@@ -11,7 +11,7 @@ import androidx.fragment.app.activityViewModels
 import com.danielcoutts.goalsapp.R
 
 import com.danielcoutts.goalsapp.base.BaseFragment
-import com.danielcoutts.goalsapp.data.db.entities.GoalEntity
+import com.danielcoutts.goalsapp.data.models.Goal
 import com.danielcoutts.goalsapp.sections.main.MainViewModel
 import com.danielcoutts.goalsapp.sections.main.adapters.GoalListAdapter
 import kotlinx.android.synthetic.main.fragment_goal_list.view.*
@@ -43,7 +43,7 @@ open class BaseGoalListFragment : BaseFragment() {
         }
     }
 
-    private fun showDeleteDialogForGoal(goal: GoalEntity) {
+    private fun showDeleteDialogForGoal(goal: Goal) {
         AlertDialog.Builder(context, android.R.style.Theme_Material_Light_Dialog_Alert)
                 .setTitle(goal.title)
                 .setMessage("Are you sure you want to delete this goal?")
@@ -56,12 +56,12 @@ open class BaseGoalListFragment : BaseFragment() {
                 .show()
     }
 
-    private fun showLogDialogForGoal(goal: GoalEntity) {
+    private fun showLogDialogForGoal(goal: Goal) {
         AlertDialog.Builder(context, android.R.style.Theme_Material_Light_Dialog_Alert)
                 .setTitle(goal.title)
                 .setMessage("Are you sure you want to log this goal?")
                 .setPositiveButton("Log") { _, _ ->
-                    viewModel.logForGoal(goal)
+                    viewModel.logForGoal(goal as Goal.Number)
                 }
                 .setNegativeButton("Cancel", null)
                 .setIcon(R.drawable.ic_log_number)

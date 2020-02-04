@@ -4,6 +4,7 @@ import androidx.lifecycle.liveData
 import com.danielcoutts.goalsapp.base.BaseViewModel
 import com.danielcoutts.goalsapp.data.db.entities.GoalEntity
 import com.danielcoutts.goalsapp.data.db.etc.GoalType
+import com.danielcoutts.goalsapp.data.models.Goal
 import com.danielcoutts.goalsapp.data.models.Recurrence
 
 class CreateGoalViewModel : BaseViewModel() {
@@ -20,10 +21,9 @@ class CreateGoalViewModel : BaseViewModel() {
 
         if (isValid) {
             model.createGoal(
-                    GoalEntity(
+                    Goal.Number(
                             title = "$verb $number $noun",
                             recurrence = recurrence!!,
-                            goalType = GoalType.NUMBER,
                             target = number
                     )
             )

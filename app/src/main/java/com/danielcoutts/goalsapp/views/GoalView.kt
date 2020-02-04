@@ -8,13 +8,15 @@ import androidx.core.view.updateLayoutParams
 import com.danielcoutts.goalsapp.R
 import com.danielcoutts.goalsapp.data.db.entities.GoalEntity
 import com.danielcoutts.goalsapp.data.db.entities.GoalLogEntity
+import com.danielcoutts.goalsapp.data.models.Goal
+import com.danielcoutts.goalsapp.data.models.GoalLog
 import kotlinx.android.synthetic.main.item_goal.view.*
 
 class GoalView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
-    var goal: GoalEntity? = null
+    var goal: Goal.Number? = null
         set(value) {
             field = value
             if (value == null) return
@@ -26,7 +28,7 @@ class GoalView @JvmOverloads constructor(
             remainingText.text = "${value.target} remaining"
         }
 
-    var log: GoalLogEntity? = null
+    var log: GoalLog.Number? = null
         set(value) {
             field = value
             val currentGoal = goal
@@ -38,7 +40,7 @@ class GoalView @JvmOverloads constructor(
 
             val logButtonActive = (currentGoal.target > value.numberLogged)
             logButton.isEnabled = logButtonActive
-            logButton.setColorFilter(ContextCompat.getColor(context, if(logButtonActive) R.color.colorGreyDark else R.color.colorGreyLight))
+            logButton.setColorFilter(ContextCompat.getColor(context, if (logButtonActive) R.color.colorGreyDark else R.color.colorGreyLight))
         }
 
     init {
