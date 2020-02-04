@@ -1,9 +1,9 @@
 package com.danielcoutts.goalsapp.sections.main
 
-import com.danielcoutts.goalsapp.db.AppDatabase
-import com.danielcoutts.goalsapp.db.entities.Goal
-import com.danielcoutts.goalsapp.etc.LocalDateConstants
-import com.danielcoutts.goalsapp.etc.Recurrence
+import com.danielcoutts.goalsapp.repository.db.AppDatabase
+import com.danielcoutts.goalsapp.repository.db.entities.GoalEntity
+import com.danielcoutts.goalsapp.repository.etc.LocalDateValues
+import com.danielcoutts.goalsapp.repository.etc.Recurrence
 
 class MainModel {
     private val goalDao = AppDatabase.instance.goalDao()
@@ -19,17 +19,17 @@ class MainModel {
             goalDao.goals(Recurrence.MONTHLY) // TODO Make distinct
 
     fun dailyGoalLogs() =
-            goalLogDao.logs(LocalDateConstants.today, Recurrence.DAILY) // TODO Make distinct
+            goalLogDao.logs(LocalDateValues.today, Recurrence.DAILY) // TODO Make distinct
 
     fun weeklyGoalLogs() =
-            goalLogDao.logs(LocalDateConstants.week, Recurrence.WEEKLY) // TODO Make distinct
+            goalLogDao.logs(LocalDateValues.week, Recurrence.WEEKLY) // TODO Make distinct
 
     fun monthlyGoalLogs() =
-            goalLogDao.logs(LocalDateConstants.month, Recurrence.MONTHLY) // TODO Make distinct
+            goalLogDao.logs(LocalDateValues.month, Recurrence.MONTHLY) // TODO Make distinct
 
-    suspend fun deleteGoal(goal: Goal) =
+    suspend fun deleteGoal(goal: GoalEntity) =
             goalDao.deleteGoal(goal)
 
-    suspend fun logForGoal(goal: Goal) =
+    suspend fun logForGoal(goal: GoalEntity) =
             goalLogDao.logForGoal(goal)
 }

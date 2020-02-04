@@ -2,8 +2,9 @@ package com.danielcoutts.goalsapp.sections.create
 
 import androidx.lifecycle.liveData
 import com.danielcoutts.goalsapp.base.BaseViewModel
-import com.danielcoutts.goalsapp.db.entities.Goal
-import com.danielcoutts.goalsapp.etc.Recurrence
+import com.danielcoutts.goalsapp.repository.db.entities.GoalEntity
+import com.danielcoutts.goalsapp.repository.etc.GoalType
+import com.danielcoutts.goalsapp.repository.etc.Recurrence
 
 class CreateGoalViewModel : BaseViewModel() {
 
@@ -19,7 +20,12 @@ class CreateGoalViewModel : BaseViewModel() {
 
         if (isValid) {
             model.createGoal(
-                    Goal("$verb $number $noun", recurrence!!, number)
+                    GoalEntity(
+                            title = "$verb $number $noun",
+                            recurrence = recurrence!!,
+                            goalType = GoalType.NUMBER,
+                            target = number
+                    )
             )
         }
 
