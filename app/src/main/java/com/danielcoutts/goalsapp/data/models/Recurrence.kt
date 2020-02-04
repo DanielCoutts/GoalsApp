@@ -1,4 +1,4 @@
-package com.danielcoutts.goalsapp.repository.etc
+package com.danielcoutts.goalsapp.data.models
 
 enum class Recurrence {
     DAILY, WEEKLY, MONTHLY;

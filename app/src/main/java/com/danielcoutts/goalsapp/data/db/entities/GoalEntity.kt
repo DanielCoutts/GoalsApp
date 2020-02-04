@@ -1,13 +1,13 @@
-package com.danielcoutts.goalsapp.repository.db.entities
+package com.danielcoutts.goalsapp.data.db.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.danielcoutts.goalsapp.repository.etc.GoalType
-import com.danielcoutts.goalsapp.repository.etc.Recurrence
+import com.danielcoutts.goalsapp.data.db.etc.GoalType
+import com.danielcoutts.goalsapp.data.models.Recurrence
 import java.time.LocalDate
 
 @Entity(tableName = "goals")
-class GoalEntity(
+internal class GoalEntity(
         var title: String,
         val recurrence: Recurrence,
         val goalType: GoalType,

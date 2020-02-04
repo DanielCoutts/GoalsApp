@@ -6,8 +6,8 @@ import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.core.view.updateLayoutParams
 import com.danielcoutts.goalsapp.R
-import com.danielcoutts.goalsapp.repository.db.entities.GoalEntity
-import com.danielcoutts.goalsapp.repository.db.entities.GoalLogEntity
+import com.danielcoutts.goalsapp.data.db.entities.GoalEntity
+import com.danielcoutts.goalsapp.data.db.entities.GoalLogEntity
 import kotlinx.android.synthetic.main.item_goal.view.*
 
 class GoalView @JvmOverloads constructor(

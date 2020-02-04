@@ -11,7 +11,7 @@ import androidx.fragment.app.activityViewModels
 import com.danielcoutts.goalsapp.R
 
 import com.danielcoutts.goalsapp.base.BaseFragment
-import com.danielcoutts.goalsapp.repository.db.entities.GoalEntity
+import com.danielcoutts.goalsapp.data.db.entities.GoalEntity
 import com.danielcoutts.goalsapp.sections.main.MainViewModel
 import com.danielcoutts.goalsapp.sections.main.adapters.GoalListAdapter
 import kotlinx.android.synthetic.main.fragment_goal_list.view.*

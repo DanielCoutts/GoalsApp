@@ -1,13 +1,13 @@
-package com.danielcoutts.goalsapp.repository.db.daos
+package com.danielcoutts.goalsapp.data.db.daos
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
-import com.danielcoutts.goalsapp.repository.etc.Recurrence
-import com.danielcoutts.goalsapp.repository.db.entities.GoalEntity
+import com.danielcoutts.goalsapp.data.models.Recurrence
+import com.danielcoutts.goalsapp.data.db.entities.GoalEntity
 
 @Dao
-interface GoalDao {
+internal interface GoalDao {
 
     @Query("select * from goals")
     fun goals(): LiveData<List<GoalEntity>>

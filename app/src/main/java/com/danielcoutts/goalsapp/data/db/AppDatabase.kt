@@ -1,13 +1,13 @@
-package com.danielcoutts.goalsapp.repository.db
+package com.danielcoutts.goalsapp.data.db
 
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.danielcoutts.goalsapp.application.MyApplication
-import com.danielcoutts.goalsapp.repository.db.daos.GoalDao
-import com.danielcoutts.goalsapp.repository.db.daos.GoalLogDao
-import com.danielcoutts.goalsapp.repository.db.entities.*
+import com.danielcoutts.goalsapp.data.db.daos.GoalDao
+import com.danielcoutts.goalsapp.data.db.daos.GoalLogDao
+import com.danielcoutts.goalsapp.data.db.entities.*
 
 @Database(
         entities = [
@@ -18,7 +18,7 @@ import com.danielcoutts.goalsapp.repository.db.entities.*
         exportSchema = false
 )
 @TypeConverters(Converters::class)
-abstract class AppDatabase : RoomDatabase() {
+internal abstract class AppDatabase : RoomDatabase() {
 
     companion object {
         val instance: AppDatabase by lazy {

@@ -1,6 +1,5 @@
-package com.danielcoutts.goalsapp.repository
+package com.danielcoutts.goalsapp.data.models
 
-import com.danielcoutts.goalsapp.repository.etc.Recurrence
 import java.time.LocalDate
 
 sealed class GoalLog {

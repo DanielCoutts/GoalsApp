@@ -2,9 +2,9 @@ package com.danielcoutts.goalsapp.sections.create
 
 import androidx.lifecycle.liveData
 import com.danielcoutts.goalsapp.base.BaseViewModel
-import com.danielcoutts.goalsapp.repository.db.entities.GoalEntity
-import com.danielcoutts.goalsapp.repository.etc.GoalType
-import com.danielcoutts.goalsapp.repository.etc.Recurrence
+import com.danielcoutts.goalsapp.data.db.entities.GoalEntity
+import com.danielcoutts.goalsapp.data.db.etc.GoalType
+import com.danielcoutts.goalsapp.data.models.Recurrence
 
 class CreateGoalViewModel : BaseViewModel() {
 

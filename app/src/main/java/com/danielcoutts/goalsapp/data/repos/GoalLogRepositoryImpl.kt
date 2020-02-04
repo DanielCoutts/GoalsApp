@@ -1,12 +1,14 @@
-package com.danielcoutts.goalsapp.repository
+package com.danielcoutts.goalsapp.data.repos
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
-import com.danielcoutts.goalsapp.repository.db.AppDatabase
-import com.danielcoutts.goalsapp.repository.db.entities.GoalLogEntity
-import com.danielcoutts.goalsapp.repository.etc.LocalDateValues
-import com.danielcoutts.goalsapp.repository.etc.Recurrence
-import com.danielcoutts.goalsapp.repository.utils.toGoalLog
+import com.danielcoutts.goalsapp.data.db.AppDatabase
+import com.danielcoutts.goalsapp.data.db.entities.GoalLogEntity
+import com.danielcoutts.goalsapp.data.db.etc.LocalDateValues
+import com.danielcoutts.goalsapp.data.models.Recurrence
+import com.danielcoutts.goalsapp.data.models.Goal
+import com.danielcoutts.goalsapp.data.models.GoalLog
+import com.danielcoutts.goalsapp.data.utils.toGoalLog
 
 object GoalLogRepositoryImpl : GoalLogRepository {
 

@@ -1,4 +1,4 @@
-package com.danielcoutts.goalsapp.repository.etc
+package com.danielcoutts.goalsapp.data.db.etc
 
 data class Duration(val totalMinutes: Long = 0) {
 

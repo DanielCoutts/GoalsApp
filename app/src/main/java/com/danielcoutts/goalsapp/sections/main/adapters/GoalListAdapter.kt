@@ -2,7 +2,7 @@ package com.danielcoutts.goalsapp.sections.main.adapters
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
-import com.danielcoutts.goalsapp.repository.db.entities.*
+import com.danielcoutts.goalsapp.data.db.entities.*
 import com.danielcoutts.goalsapp.sections.main.data.GoalListData
 import com.danielcoutts.goalsapp.views.GoalView
 import kotlinx.android.synthetic.main.item_goal.view.*
