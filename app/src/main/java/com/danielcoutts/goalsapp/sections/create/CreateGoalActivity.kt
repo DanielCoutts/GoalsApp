@@ -5,11 +5,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import androidx.activity.viewModels
-import androidx.lifecycle.observe
 import com.google.android.material.snackbar.Snackbar
 import com.danielcoutts.goalsapp.R
 import com.danielcoutts.goalsapp.base.BaseActivity
 import com.danielcoutts.goalsapp.data.models.Recurrence
+import com.danielcoutts.goalsapp.util.observeEvents
 import kotlinx.android.synthetic.main.activity_create_goal.*
 
 class CreateGoalActivity : BaseActivity() {
@@ -22,7 +22,7 @@ class CreateGoalActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_goal)
 
-        Snackbar.make(container, "The goal details are incomplete", Snackbar.LENGTH_SHORT)
+        errorSnackbar = Snackbar.make(container, "The goal details are incomplete", Snackbar.LENGTH_SHORT)
 
         verb.requestFocus()
 
@@ -36,11 +36,13 @@ class CreateGoalActivity : BaseActivity() {
         }
 
         okButton.setOnClickListener {
-            viewModel.createGoal().observe(owner = this) { isSuccessful ->
-                when {
-                    isSuccessful -> finish()
-                    else -> errorSnackbar.show()
-                }
+            viewModel.createGoal()
+        }
+
+        viewModel.events.observeEvents(this) {
+            when (it) {
+                CreateGoalViewModel.CreateGoalEvent.GOAL_CREATED -> finish()
+                CreateGoalViewModel.CreateGoalEvent.GOAL_CREATION_ERROR -> errorSnackbar.show()
             }
         }
 
