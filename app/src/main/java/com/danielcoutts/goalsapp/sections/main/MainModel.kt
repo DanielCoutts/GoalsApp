@@ -1,7 +1,9 @@
 package com.danielcoutts.goalsapp.sections.main
 
+import androidx.lifecycle.LiveData
 import com.danielcoutts.goalsapp.application.MyApplication
 import com.danielcoutts.goalsapp.data.models.Goal
+import com.danielcoutts.goalsapp.data.models.GoalLog
 import com.danielcoutts.goalsapp.data.models.Recurrence
 import com.danielcoutts.goalsapp.data.repos.GoalLogRepository
 import com.danielcoutts.goalsapp.data.repos.GoalRepository
@@ -12,22 +14,22 @@ class MainModel {
     private val goalLogRepo: GoalLogRepository = // TODO Update
             MyApplication.instance.appComponent.getGoalLogRepository()
 
-    fun dailyGoals() =
+    fun dailyGoals(): LiveData<List<Goal>> =
             goalRepo.goals(Recurrence.DAILY) // TODO Make distinct
 
-    fun weeklyGoals() =
+    fun weeklyGoals(): LiveData<List<Goal>> =
             goalRepo.goals(Recurrence.WEEKLY) // TODO Make distinct
 
-    fun monthlyGoals() =
+    fun monthlyGoals(): LiveData<List<Goal>> =
             goalRepo.goals(Recurrence.MONTHLY) // TODO Make distinct
 
-    fun dailyGoalLogs() =
+    fun dailyGoalLogs(): LiveData<List<GoalLog>> =
             goalLogRepo.goalLogs(Recurrence.DAILY) // TODO Make distinct
 
-    fun weeklyGoalLogs() =
+    fun weeklyGoalLogs(): LiveData<List<GoalLog>> =
             goalLogRepo.goalLogs(Recurrence.WEEKLY) // TODO Make distinct
 
-    fun monthlyGoalLogs() =
+    fun monthlyGoalLogs(): LiveData<List<GoalLog>> =
             goalLogRepo.goalLogs(Recurrence.MONTHLY) // TODO Make distinct
 
     suspend fun deleteGoal(goal: Goal) =
