@@ -1,9 +1,9 @@
-package com.danielcoutts.goalsapp.util
+package com.danielcoutts.goalsapp.data.utils
 
 import java.time.DayOfWeek
 import java.time.LocalDate
 
-fun LocalDate.withDayOfWeek(
+internal fun LocalDate.withDayOfWeek(
         dayOfWeek: DayOfWeek
 ): LocalDate =
         plusDays(

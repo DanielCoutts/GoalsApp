@@ -6,8 +6,6 @@ import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.core.view.updateLayoutParams
 import com.danielcoutts.goalsapp.R
-import com.danielcoutts.goalsapp.data.db.entities.GoalEntity
-import com.danielcoutts.goalsapp.data.db.entities.GoalLogEntity
 import com.danielcoutts.goalsapp.data.models.Goal
 import com.danielcoutts.goalsapp.data.models.GoalLog
 import kotlinx.android.synthetic.main.item_goal.view.*
