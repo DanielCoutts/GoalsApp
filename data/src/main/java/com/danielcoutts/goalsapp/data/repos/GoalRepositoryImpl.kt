@@ -1,17 +1,13 @@
 package com.danielcoutts.goalsapp.data.repos
 
 import androidx.lifecycle.map
-import com.danielcoutts.goalsapp.data.db.AppDatabase
+import com.danielcoutts.goalsapp.data.db.daos.GoalDao
 import com.danielcoutts.goalsapp.data.models.Recurrence
 import com.danielcoutts.goalsapp.data.models.Goal
 import com.danielcoutts.goalsapp.data.utils.toEntity
 import com.danielcoutts.goalsapp.data.utils.toGoal
 
-object GoalRepositoryImpl : GoalRepository {
-
-    private val goalDao by lazy {
-        AppDatabase.instance.goalDao()
-    }
+internal class GoalRepositoryImpl(private val goalDao: GoalDao) : GoalRepository {
 
     override fun goals(recurrence: Recurrence) = goalDao.goals(recurrence)
             .map { goals ->

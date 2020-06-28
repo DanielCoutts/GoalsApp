@@ -3,6 +3,7 @@ package com.danielcoutts.goalsapp.data.repos
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import com.danielcoutts.goalsapp.data.db.AppDatabase
+import com.danielcoutts.goalsapp.data.db.daos.GoalLogDao
 import com.danielcoutts.goalsapp.data.db.entities.GoalLogEntity
 import com.danielcoutts.goalsapp.data.db.etc.LocalDateValues
 import com.danielcoutts.goalsapp.data.models.Recurrence
@@ -11,11 +12,7 @@ import com.danielcoutts.goalsapp.data.models.GoalLog
 import com.danielcoutts.goalsapp.data.utils.toEntity
 import com.danielcoutts.goalsapp.data.utils.toGoalLog
 
-object GoalLogRepositoryImpl : GoalLogRepository {
-
-    private val goalLogDao by lazy {
-        AppDatabase.instance.goalLogDao()
-    }
+internal class GoalLogRepositoryImpl(private val goalLogDao: GoalLogDao) : GoalLogRepository {
 
     override fun goalLogs(recurrence: Recurrence): LiveData<List<GoalLog>> =
             logs(recurrence)

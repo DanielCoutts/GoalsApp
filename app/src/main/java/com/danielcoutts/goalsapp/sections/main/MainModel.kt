@@ -1,17 +1,16 @@
 package com.danielcoutts.goalsapp.sections.main
 
-import com.danielcoutts.goalsapp.data.db.entities.GoalEntity
-import com.danielcoutts.goalsapp.data.db.etc.LocalDateValues
+import com.danielcoutts.goalsapp.application.MyApplication
 import com.danielcoutts.goalsapp.data.models.Goal
 import com.danielcoutts.goalsapp.data.models.Recurrence
 import com.danielcoutts.goalsapp.data.repos.GoalLogRepository
-import com.danielcoutts.goalsapp.data.repos.GoalLogRepositoryImpl
 import com.danielcoutts.goalsapp.data.repos.GoalRepository
-import com.danielcoutts.goalsapp.data.repos.GoalRepositoryImpl
 
 class MainModel {
-    private val goalRepo: GoalRepository = GoalRepositoryImpl
-    private val goalLogRepo: GoalLogRepository = GoalLogRepositoryImpl
+    private val goalRepo: GoalRepository = // TODO Update
+            MyApplication.instance.appComponent.getGoalRepository()
+    private val goalLogRepo: GoalLogRepository = // TODO Update
+            MyApplication.instance.appComponent.getGoalLogRepository()
 
     fun dailyGoals() =
             goalRepo.goals(Recurrence.DAILY) // TODO Make distinct

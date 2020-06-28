@@ -1,6 +1,6 @@
 package com.danielcoutts.goalsapp.data.db.etc
 
-import com.danielcoutts.goalsapp.util.withDayOfWeek
+import com.danielcoutts.goalsapp.data.utils.withDayOfWeek
 import java.time.DayOfWeek
 import java.time.LocalDate
 
