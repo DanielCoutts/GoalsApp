@@ -36,7 +36,7 @@ dependencies {
     api "androidx.core:core-ktx:$ktx_version"
     api "androidx.activity:activity-ktx:$activity_version"
     api "androidx.fragment:fragment-ktx:$fragment_version"
-    api "com.google.android.material:material:$material_version"
+    api "com.google.android.material:material:${material_version}"
     api "androidx.recyclerview:recyclerview:$recycler_view_version"
     api "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
     api "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"

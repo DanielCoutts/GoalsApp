@@ -10,6 +10,7 @@ import com.danielcoutts.goalsapp.R
 import com.danielcoutts.goalsapp.base.BaseActivity
 import com.danielcoutts.goalsapp.data.models.Recurrence
 import com.danielcoutts.goalsapp.util.observeEvents
+import com.danielcoutts.goalsapp.util.setNavigationIconWithTint
 import kotlinx.android.synthetic.main.activity_create_goal.*
 
 class CreateGoalActivity : BaseActivity() {
@@ -26,7 +27,7 @@ class CreateGoalActivity : BaseActivity() {
 
         verb.requestFocus()
 
-        toolbar.setNavigationIcon(R.drawable.ic_cancel)
+        toolbar.setNavigationIconWithTint(this, R.drawable.ic_cancel, R.color.colorIcons)
         toolbar.setNavigationOnClickListener {
             finish()
         }

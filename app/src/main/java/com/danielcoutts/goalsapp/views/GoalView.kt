@@ -3,7 +3,9 @@ package com.danielcoutts.goalsapp.views
 import android.content.Context
 import androidx.core.content.ContextCompat
 import android.util.AttributeSet
+import android.view.View
 import android.widget.FrameLayout
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.updateLayoutParams
 import com.danielcoutts.goalsapp.R
 import com.danielcoutts.goalsapp.data.models.Goal
@@ -38,7 +40,7 @@ class GoalView @JvmOverloads constructor(
 
             val logButtonActive = (currentGoal.target > value.numberLogged)
             logButton.isEnabled = logButtonActive
-            logButton.setColorFilter(ContextCompat.getColor(context, if (logButtonActive) R.color.colorGreyDark else R.color.colorGreyLight))
+            logButton.visibility = if (logButtonActive) View.VISIBLE else View.INVISIBLE
         }
 
     init {

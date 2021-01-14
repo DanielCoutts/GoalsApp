@@ -2,6 +2,7 @@ package com.danielcoutts.goalsapp.sections.main.adapters
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import com.danielcoutts.goalsapp.data.db.entities.*
 import com.danielcoutts.goalsapp.data.models.Goal
 import com.danielcoutts.goalsapp.data.models.GoalLog
@@ -11,48 +12,78 @@ import kotlinx.android.synthetic.main.item_goal.view.*
 
 class GoalListAdapter : RecyclerView.Adapter<GoalListAdapter.GoalViewHolder>() {
 
-    private var goals: List<Goal> = listOf()
+    data class ListItem(
+            val goal: Goal,
+            val log: GoalLog?
+    )
 
-    private var logs: Map<Long, GoalLog> = mapOf()
+    private var listItems = listOf<ListItem>()
 
     var goalDeleteListener: ((Goal) -> Unit)? = null
     var goalLogListener: ((Goal) -> Unit)? = null
 
     fun setGoalListData(data: GoalListData) {
-        goals = data.goals
+        val oldListItems = listItems
+        val newListItems = data.goals.map { goal ->
+            ListItem(
+                    goal = goal,
+                    log = data.logs.find { log -> log.goalId == goal.id }
+            )
+        }
 
-        val newLogs = mutableMapOf<Long, GoalLog>()
-        for (log in data.logs) newLogs[log.goalId] = log
-        logs = newLogs
+        listItems = newListItems
 
-        notifyDataSetChanged()
+        val diffResult = DiffUtil.calculateDiff(DiffUtilCallback(oldListItems, newListItems))
+        diffResult.dispatchUpdatesTo(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GoalViewHolder = GoalViewHolder(GoalView(parent.context))
 
-    override fun getItemCount(): Int = goals.size
+    override fun getItemCount(): Int = listItems.size
 
     override fun onBindViewHolder(holder: GoalViewHolder, position: Int) {
-        val goal = goals[position]
-        val log = logs[goal.id]
+        val item = listItems[position]
 
-        holder.bind(goal, log)
-
-        holder.goalItemView.logButton.setOnClickListener {
-            goalLogListener?.invoke(goal)
-        }
-
-        holder.goalItemView.deleteButton.setOnClickListener {
-            goalDeleteListener?.invoke(goal)
-        }
+        holder.bind(item.goal, item.log)
     }
 
-    class GoalViewHolder(val goalItemView: GoalView) : RecyclerView.ViewHolder(goalItemView) {
+    inner class GoalViewHolder(val goalItemView: GoalView) : RecyclerView.ViewHolder(goalItemView) {
         fun bind(goal: Goal, log: GoalLog?) {
             with(goalItemView) {
                 this.goal = goal as Goal.Number
                 this.log = log as? GoalLog.Number
+
+                logButton.setOnClickListener {
+                    goalLogListener?.invoke(goal)
+                }
+
+                deleteButton.setOnClickListener {
+                    goalDeleteListener?.invoke(goal)
+                }
             }
+        }
+    }
+
+    inner class DiffUtilCallback(
+            private val oldList: List<ListItem>,
+            private val newList: List<ListItem>
+    ) : DiffUtil.Callback() {
+        override fun getOldListSize(): Int = oldList.size
+
+        override fun getNewListSize(): Int = newList.size
+
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            val oldItem = oldList[oldItemPosition]
+            val newItem = newList[newItemPosition]
+
+            return oldItem.goal.id == newItem.goal.id
+        }
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            val oldItem = oldList[oldItemPosition]
+            val newItem = newList[newItemPosition]
+
+            return oldItem == newItem
         }
     }
 }

@@ -1,28 +1,31 @@
-<resources>
-
-    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:navigationBarColor">@color/colorPrimaryDark</item>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorAccentPrimary</item>
+        <item name="colorPrimaryDark">@color/colorAccentSecondary</item>
+        <item name="colorAccent">@color/colorAccentPrimary</item>
+        <item name="android:windowLightStatusBar">@bool/isLightMode</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">@bool/isLightMode</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/colorBackgroundSecondary</item>
+        <item name="android:navigationBarColor">@color/colorBackgroundSecondaryAlpha85</item>
     </style>
-    
+
     <style name="GoalTitle">
         <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textColor">@color/colorGreyDark</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
     </style>
 
     <style name="GoalLight">
         <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">sans-serif-light</item>
-        <item name="android:textColor">@color/colorGrey</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
     </style>
 
     <style name="GoalCondensed">
         <item name="android:textSize">12sp</item>
         <item name="android:fontFamily">sans-serif-condensed-light</item>
-        <item name="android:textColor">@color/colorGreyDark</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
     </style>
 
 </resources>

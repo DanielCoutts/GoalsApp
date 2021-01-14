@@ -2,5 +2,5 @@
     android:shape="line">
     <corners android:radius="10dp"/>
     <size android:height="10dp" android:width="130dp"/>
-    <solid android:color="@color/colorPrimaryLight" />
+    <solid android:color="#fff" />
 </shape>

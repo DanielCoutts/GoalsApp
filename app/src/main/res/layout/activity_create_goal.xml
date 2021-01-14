@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorGreyBackground"
+    android:background="@color/colorBackgroundPrimary"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context="com.danielcoutts.goalsapp.sections.create.CreateGoalActivity">
@@ -15,18 +15,18 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_marginBottom="8dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorBackgroundPrimary"
         app:title="Create Goal" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorWhite"
+        android:background="@color/colorBackgroundPrimary"
         android:orientation="vertical"
-        android:paddingBottom="16dp"
-        android:paddingEnd="24dp"
         android:paddingStart="24dp"
-        android:paddingTop="16dp">
+        android:paddingTop="16dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="16dp">
 
         <TextView
             style="@style/GoalLight"
@@ -52,16 +52,16 @@
                 android:lines="1"
                 android:maxLength="25"
                 android:singleLine="true"
-                android:textColor="@color/colorGreyDark"
-                android:textColorHint="@color/colorGreyLight"
+                android:textColor="@color/colorTextPrimary"
+                android:textColorHint="@color/colorBackgroundSecondary"
                 android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/edit_text_background_tint"
                 android:hint="1"
@@ -69,8 +69,8 @@
                 android:inputType="number"
                 android:maxLength="2"
                 android:singleLine="true"
-                android:textColor="@color/colorGreyDark"
-                android:textColorHint="@color/colorGreyLight"
+                android:textColor="@color/colorTextPrimary"
+                android:textColorHint="@color/colorTextSecondary"
                 android:textSize="20sp" />
 
             <EditText
@@ -85,8 +85,8 @@
                 android:lines="1"
                 android:maxLength="25"
                 android:singleLine="true"
-                android:textColor="@color/colorGreyDark"
-                android:textColorHint="@color/colorGreyLight"
+                android:textColor="@color/colorTextPrimary"
+                android:textColorHint="@color/colorTextSecondary"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -102,8 +102,8 @@
             android:id="@+id/every"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="4dp"
-            android:paddingTop="4dp">
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp">
 
             <RadioButton
                 android:id="@+id/day"
@@ -111,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/button_tint"
                 android:text="Day"
-                android:textColor="@color/colorGreyDark"
+                android:textColor="@color/colorTextPrimary"
                 android:textSize="20sp" />
 
             <RadioButton
@@ -120,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/button_tint"
                 android:text="Week"
-                android:textColor="@color/colorGreyDark"
+                android:textColor="@color/colorTextPrimary"
                 android:textSize="20sp" />
 
             <RadioButton
@@ -129,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/button_tint"
                 android:text="Month"
-                android:textColor="@color/colorGreyDark"
+                android:textColor="@color/colorTextPrimary"
                 android:textSize="20sp" />
 
         </RadioGroup>
@@ -144,22 +144,27 @@
             android:id="@+id/cancelButton"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="12dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="16dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:src="@drawable/ic_cancel" />
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="16dp"
+            app:backgroundTint="@color/colorActionButtons"
+            app:elevation="8dp"
+            app:srcCompat="@drawable/ic_cancel"
+            app:tint="@color/colorIcons" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/okButton"
             android:layout_width="56dp"
             android:layout_height="56dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="12dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="16dp"
-            android:src="@drawable/ic_ok" />
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="16dp"
+            app:backgroundTint="@color/colorActionButtons"
+            app:elevation="8dp"
+            app:srcCompat="@drawable/ic_ok"
+            app:tint="@color/colorIcons" />
 
     </LinearLayout>
 

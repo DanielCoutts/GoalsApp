@@ -1,14 +1,11 @@
 package com.danielcoutts.goalsapp.views
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
 import com.danielcoutts.goalsapp.R
 import android.animation.ValueAnimator
-import android.view.animation.DecelerateInterpolator
+import android.graphics.*
 
 
 class SegmentedProgressBar @JvmOverloads constructor(

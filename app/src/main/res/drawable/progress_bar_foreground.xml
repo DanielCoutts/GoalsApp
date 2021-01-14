@@ -9,7 +9,7 @@
         android:name="background_line"
         android:pathData="M 5 5 L 125 5"
         android:fillColor="#000"
-        android:strokeColor="@color/colorAccent"
+        android:strokeColor="#fff"
         android:strokeWidth="10"
         android:strokeLineCap="round"/>
 </vector>
